@@ -1,16 +1,19 @@
 # Zynq.HDMI.Z-turn.Sil9022A
 
-Starting up the HDMI on a Z-turn V2 board
+Starting up HDMI on a Z-turn V2 board
 
 ---
 
-This repository **aims** to help those dealing with [the] missing documentation 🥶
+The repository **aims** to help those dealing with [the] missing documentation 🥶
 
 # Introduction
 
-The [z-turn][z-turn] board, is a [Zynq][Zynq] [PCB][PCB], featuring multiple peripherals, split between the PL and PS part [of a Zynq].
+The [z-turn][z-turn] board, is a [Zynq][Zynq] [PCB][PCB], featuring multiple peripherals:
 
-![<Image blinking/button>](img/z-turn.blinks.button.gif)
+![<Image: blinking/button>](img/z-turn.blinks.button.gif)
+![<Image: peripherals>](img/z-turn.peripherals.jpg)
+
+These, are split between the <abbr title="Programmable Logic">PL</abbr> and PS part [of a Zynq].
 
 <!-- References/ invisible parts -->
 
