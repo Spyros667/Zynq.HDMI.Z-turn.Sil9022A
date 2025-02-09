@@ -4,6 +4,10 @@ Starting up HDMI on a Z-turn V2 board
 
 ---
 
+# Table of Contents
+- ## [Introduction](#introduction)
+- ## [Step 2](#Step 2)
+
 # Introduction
 
 The [z-turn][z-turn] board, is a [Zynq][Zynq] [PCB][PCB], featuring multiple peripherals:
@@ -20,6 +24,8 @@ In order to find, where the HDMI is connected to, we can reference the [schemati
 Looking further down [the schematics], we see that the signals pass through an "HDMI transmitter".
 
 ![<IMG: Sil9022A>](img/Sil9022A.jpg)
+
+# Step 2
 
 <!-- References/ invisible parts -->
 
