@@ -5,8 +5,8 @@ Starting up HDMI on a Z-turn V2 board
 ---
 
 # Table of Contents
-- ## [Introduction](#introduction)
-- ## [Step 2](#Step-2)
+- ## [Introduction](#Introduction)
+- ## [Step 2: Activating Sil9022A (i.e. the HDMI transmitter)](#Step-2:-Activating-Sil9022A-(i.e.-the-HDMI-transmitter))
 
 # Introduction
 
