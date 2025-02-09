@@ -6,7 +6,7 @@ Starting up HDMI on a Z-turn V2 board
 
 # Table of Contents
 - ## [Introduction](#introduction)
-- ## [Step 2](#Step 2)
+- ## [Step 2](#Step_2)
 
 # Introduction
 
