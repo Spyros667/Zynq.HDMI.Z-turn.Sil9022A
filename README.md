@@ -6,7 +6,7 @@ Starting up HDMI on a Z-turn V2 board
 
 # Table of Contents
 - ## [Introduction](#introduction)
-- ## [Step 2](#Step_2)
+- ## [Step 2](#Step-2)
 
 # Introduction
 
@@ -25,7 +25,7 @@ Looking further down [the schematics], we see that the signals pass through an "
 
 ![<IMG: Sil9022A>](img/Sil9022A.jpg)
 
-# Step_2
+# Step 2
 
 <!-- References/ invisible parts -->
 
