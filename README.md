@@ -13,7 +13,7 @@ The [z-turn][z-turn] board, is a [Zynq][Zynq] [PCB][PCB], featuring multiple per
 ![<Image: blinking/button>](img/z-turn.blinks.button.gif)
 ![<Image: peripherals>](img/z-turn.peripherals.jpg)
 
-These, are split between the <abbr title="Programmable Logic">PL</abbr> and PS part [of a Zynq].
+These, are split between the <abbr title="Programmable Logic">PL</abbr> and [PS]("Programminng system?") part [of a Zynq].
 
 <!-- References/ invisible parts -->
 
