@@ -1,49 +1,3 @@
-# Zynq.HDMI.Z-turn.Sil9022A
-
-Starting up HDMI on a Z-turn V2 board
-
----
-
-# Table of Contents
-- ## [Introduction](#introduction)
-- ## [Step 2](#Step-2)
-
-# Introduction
-
-The [z-turn][z-turn] board, is a [Zynq][Zynq] [PCB][PCB], featuring multiple peripherals:
-
-![<Image: peripherals>](img/z-turn.peripherals.jpg)
-
-Those, are connected either to the [PL][PL] or the [PS][PS] part of a Zynq.
-
-In order to find, where the HDMI is connected to, we can reference the [schematics](doc/zturnv2Schematic.pdf). According to these, they are connected to the [PL][PL] part (since the [PS][PS] pins are numbered [MIO_#][MIO]).
-
-![<IMG: hdmi pins>](img/HDMI pins.jpg)
-![<IMG: MIO>](img/MIO.jpg)
-
-Looking further down [the schematics], we see that the signals pass through an "HDMI transmitter".
-
-![<IMG: Sil9022A>](img/Sil9022A.jpg)
-
-# Step 2: Activating Sil9022A (i.e. the HDMI transmitter)
-
-link to vga signal generation
-
-# Step 3: Creating a VHDL [VGA] Signal Generator
-
-Sil9022A does not care about Hsync/Vsync **polarity**. To be specific, HDMI does not use them.
-> Let's keep Hsync/Vsync **positive** (to reduce Sil9022A configuration).
-
-## Identifying monitor capabilities
-
-One way to read the monitor's capabilities, is through its [edid][EDID] file.
-> One way to do it under linux, is via the `/sys` interface using `edid-decode`:  
-> `$ edid-decode /sys/devices/pci0000\:00/0000\:00\:02.0/drm/card0/card0-HDMI-A-1/edid`  
-> ^ You can search for the file: `$ find /sys -name edid`
-
-Example [edid][EDID] files are included in the [edids](doc/edids) folder.
-
-```bash
 edid-decode (hex):
 
 00 ff ff ff ff ff ff 00 4c 2d d0 01 31 32 52 42
@@ -106,15 +60,3 @@ Block 0, Base EDID:
     Display Product Name: 'SyncMaster'
     Display Product Serial Number: 'HSXA103152'
 Checksum: 0xf4
-```
-
-
-<!-- References/ invisible parts -->
-
-[z-turn]: https://www.myirtech.com/list.asp?id=708
-[Zynq]: https://www.amd.com/en/products/adaptive-socs-and-fpgas/soc/zynq-7000.html
-[PCB]: https://en.wikipedia.org/wiki/Printed_circuit_board
-[PL]: ## "Programmable Logic"
-[PS]: ## "Processing System"
-[MIO]: ## "Multiplexed I/O"
-[EDID]: https://en.wikipedia.org/wiki/Extended_Display_Identification_Data
