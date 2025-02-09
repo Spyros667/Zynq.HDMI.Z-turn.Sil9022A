@@ -20,5 +20,5 @@ These, are split between the [PL][PL] and [PS][PS] part [of a Zynq].
 [z-turn]: https://www.myirtech.com/list.asp?id=708
 [Zynq]: https://www.amd.com/en/products/adaptive-socs-and-fpgas/soc/zynq-7000.html
 [PCB]: https://en.wikipedia.org/wiki/Printed_circuit_board
-[PL]: ## "Programmable Logic"
-[PS]: "Processing System"
+[PL]: # "Programmable Logic"
+[PS]: ### "Processing System"
