@@ -11,26 +11,41 @@ Starting up HDMI on a Z-turn V2 board
 
 The [z-turn][z-turn] board, is a [Zynq][Zynq] [PCB][PCB], featuring multiple peripherals:
 
-![<Image: peripherals>](img/z-turn.peripherals.jpg)
+![<peripherals>](img/z-turn.peripherals.jpg)
 
 Those, are connected either to the [PL][PL] or the [PS][PS] part of a Zynq.
 
 In order to find, where the HDMI is connected to, we can reference the [schematics](doc/zturnv2Schematic.pdf). According to these, they are connected to the [PL][PL] part (since the [PS][PS] pins are numbered [MIO_#][MIO]).
 
-![<IMG: hdmi pins>](img/HDMI pins.jpg)
-![<IMG: MIO>](img/MIO.jpg)
+![<hdmi pins>](img/HDMI pins.jpg)
+![<MIO>](img/MIO.jpg)
 
 Looking further down [the schematics], we see that the signals pass through an "HDMI transmitter".
 
 ![<IMG: Sil9022A>](img/Sil9022A.jpg)
 
-# Step 2: Activating Sil9022A (i.e. the HDMI transmitter)
+As a result, we must power up the transmitter
+
+# Design
+
+![<block design>](code/block designs/design_1.svg)
+
+A relatively easy method, is to let the PS handle the powering up of the transmitter. The PL will handle the visual part.  
+(Another method, would be through `.coe` files, eliminating the need for the PS).
+
+This design, features an **AXI I2C interface** (TODO use native) to talk to the common i2c-0 bus (at least three devices use it). A **clocking wizard** is needed in order to provide a different clock for the pixels. Note: Although Sil9022A may handle up to 165MHz, it features a multiplier (and a divider) if the need arises.
+
+(A constraint file is provided in the [constraint files](code/constraint files) folder).
+
+## PS - Activating Sil9022A (i.e. the HDMI transmitter)
 
 link to vga signal generation
 
-# Step 3: Creating a VHDL [VGA] Signal Generator
+## PL - Creating a signal generator
 
 HDMI does not care about Hsync/Vsync **polarity**, so let's keep them **positive** (to reduce Sil9022A configuration).
+
+A sample `vhdl` file is provide in the [](code)
 
 ## Identifying monitor capabilities
 
