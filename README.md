@@ -28,8 +28,7 @@ As a result, we must power up the transmitter
 
 # Design
 
-![block design](code/block designs/design_1.svg)
-![block design](design_1.svg)
+![block design](code/block%20designs/design_1.svg)
 
 A relatively easy method, is to let the PS handle the powering up of the transmitter. The PL will handle the visual part.  
 (Another method, would be through `.coe` files, eliminating the need for the PS).
