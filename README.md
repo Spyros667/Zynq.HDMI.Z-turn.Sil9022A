@@ -45,9 +45,9 @@ link to vga signal generation
 
 HDMI does not care about Hsync/Vsync **polarity**, so let's keep them **positive** (to reduce Sil9022A configuration).
 
-A sample `vhdl` file is provide in the [code](code) folder, named [Image_generator.vhd](/home/ladon/contmp/Zynq.HDMI.Z-turn.Sil9022A/code/Image_generator.vhd).
+A sample `vhdl` file is provided inside the [code](code) folder, named [Image_generator.vhd](/home/ladon/contmp/Zynq.HDMI.Z-turn.Sil9022A/code/Image_generator.vhd):
 
-```vhdl
+```
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
