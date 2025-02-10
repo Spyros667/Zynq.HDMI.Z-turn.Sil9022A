@@ -37,7 +37,7 @@ HDMI does not care about Hsync/Vsync **polarity**, so let's keep them **positive
 One way to read the monitor's capabilities, is through its [edid][EDID] file.
 > One way to do it under linux, is via the `/sys` interface using `edid-decode`:  
 > `$ edid-decode /sys/devices/pci0000\:00/0000\:00\:02.0/drm/card0/card0-HDMI-A-1/edid`  
-> ^ You can search for the file: `$ find /sys -name edid`
+> ^ You can search for the `edid` file like so: `$ find /sys -name edid`
 
 Example [edid][EDID] files are included in the [edids](doc/edids) folder.
 

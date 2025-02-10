@@ -1,0 +1,339 @@
+{
+  "design": {
+    "design_info": {
+      "boundary_crc": "0xFF35E74BB6A87DBD",
+      "device": "xc7z020clg400-1",
+      "name": "disabled_parts",
+      "rev_ctrl_bd_flag": "RevCtrlBdOff",
+      "synth_flow_mode": "Hierarchical",
+      "tool_version": "2024.2.1"
+    },
+    "design_tree": {
+      "RGB_LED": {
+        "RGB_concat": "",
+        "NOT_gate": ""
+      },
+      "Switches": {
+        "xlslice_3": "",
+        "xlslice_2": "",
+        "xlslice_1": "",
+        "xlslice_0": "",
+        "NOT_gate": ""
+      },
+      "GND": ""
+    },
+    "ports": {
+      "BP": {
+        "direction": "O",
+        "left": "0",
+        "right": "0"
+      },
+      "RGB": {
+        "direction": "O",
+        "left": "2",
+        "right": "0"
+      },
+      "SW": {
+        "direction": "I",
+        "left": "3",
+        "right": "0"
+      }
+    },
+    "components": {
+      "RGB_LED": {
+        "ports": {
+          "RGB": {
+            "direction": "O",
+            "left": "2",
+            "right": "0"
+          },
+          "Green": {
+            "direction": "I",
+            "left": "0",
+            "right": "0"
+          },
+          "Red": {
+            "direction": "I",
+            "left": "0",
+            "right": "0"
+          },
+          "Blue": {
+            "direction": "I",
+            "left": "0",
+            "right": "0"
+          }
+        },
+        "components": {
+          "RGB_concat": {
+            "vlnv": "xilinx.com:ip:xlconcat:2.1",
+            "ip_revision": "6",
+            "xci_name": "disabled_parts_RGB_concat_0",
+            "xci_path": "ip/disabled_parts_RGB_concat_0/disabled_parts_RGB_concat_0.xci",
+            "inst_hier_path": "RGB_LED/RGB_concat",
+            "parameters": {
+              "NUM_PORTS": {
+                "value": "3"
+              }
+            }
+          },
+          "NOT_gate": {
+            "vlnv": "xilinx.com:ip:util_vector_logic:2.0",
+            "ip_revision": "4",
+            "xci_name": "disabled_parts_NOT_gate_0",
+            "xci_path": "ip/disabled_parts_NOT_gate_0/disabled_parts_NOT_gate_0.xci",
+            "inst_hier_path": "RGB_LED/NOT_gate",
+            "parameters": {
+              "C_OPERATION": {
+                "value": "not"
+              },
+              "C_SIZE": {
+                "value": "3"
+              }
+            }
+          }
+        },
+        "nets": {
+          "In0_1": {
+            "ports": [
+              "Green",
+              "RGB_concat/In0"
+            ]
+          },
+          "In1_1": {
+            "ports": [
+              "Blue",
+              "RGB_concat/In1"
+            ]
+          },
+          "In2_1": {
+            "ports": [
+              "Red",
+              "RGB_concat/In2"
+            ]
+          },
+          "concatenation_dout": {
+            "ports": [
+              "RGB_concat/dout",
+              "NOT_gate/Op1"
+            ]
+          },
+          "util_vector_logic_0_Res": {
+            "ports": [
+              "NOT_gate/Res",
+              "RGB"
+            ]
+          }
+        }
+      },
+      "Switches": {
+        "ports": {
+          "SW": {
+            "direction": "I",
+            "left": "3",
+            "right": "0"
+          },
+          "SW0": {
+            "direction": "O",
+            "left": "0",
+            "right": "0"
+          },
+          "SW1": {
+            "direction": "O",
+            "left": "0",
+            "right": "0"
+          },
+          "SW2": {
+            "direction": "O",
+            "left": "0",
+            "right": "0"
+          },
+          "SW3": {
+            "direction": "O",
+            "left": "0",
+            "right": "0"
+          }
+        },
+        "components": {
+          "xlslice_3": {
+            "vlnv": "xilinx.com:ip:xlslice:1.0",
+            "ip_revision": "4",
+            "xci_name": "disabled_parts_xlslice_3_0",
+            "xci_path": "ip/disabled_parts_xlslice_3_0/disabled_parts_xlslice_3_0.xci",
+            "inst_hier_path": "Switches/xlslice_3",
+            "parameters": {
+              "DIN_FROM": {
+                "value": "0"
+              },
+              "DIN_TO": {
+                "value": "0"
+              },
+              "DIN_WIDTH": {
+                "value": "4"
+              }
+            }
+          },
+          "xlslice_2": {
+            "vlnv": "xilinx.com:ip:xlslice:1.0",
+            "ip_revision": "4",
+            "xci_name": "disabled_parts_xlslice_2_0",
+            "xci_path": "ip/disabled_parts_xlslice_2_0/disabled_parts_xlslice_2_0.xci",
+            "inst_hier_path": "Switches/xlslice_2",
+            "parameters": {
+              "DIN_FROM": {
+                "value": "1"
+              },
+              "DIN_TO": {
+                "value": "1"
+              },
+              "DIN_WIDTH": {
+                "value": "4"
+              }
+            }
+          },
+          "xlslice_1": {
+            "vlnv": "xilinx.com:ip:xlslice:1.0",
+            "ip_revision": "4",
+            "xci_name": "disabled_parts_xlslice_1_0",
+            "xci_path": "ip/disabled_parts_xlslice_1_0/disabled_parts_xlslice_1_0.xci",
+            "inst_hier_path": "Switches/xlslice_1",
+            "parameters": {
+              "DIN_FROM": {
+                "value": "2"
+              },
+              "DIN_TO": {
+                "value": "2"
+              },
+              "DIN_WIDTH": {
+                "value": "4"
+              }
+            }
+          },
+          "xlslice_0": {
+            "vlnv": "xilinx.com:ip:xlslice:1.0",
+            "ip_revision": "4",
+            "xci_name": "disabled_parts_xlslice_0_0",
+            "xci_path": "ip/disabled_parts_xlslice_0_0/disabled_parts_xlslice_0_0.xci",
+            "inst_hier_path": "Switches/xlslice_0",
+            "parameters": {
+              "DIN_FROM": {
+                "value": "3"
+              },
+              "DIN_TO": {
+                "value": "3"
+              },
+              "DIN_WIDTH": {
+                "value": "4"
+              }
+            }
+          },
+          "NOT_gate": {
+            "vlnv": "xilinx.com:ip:util_vector_logic:2.0",
+            "ip_revision": "4",
+            "xci_name": "disabled_parts_NOT_gate_1",
+            "xci_path": "ip/disabled_parts_NOT_gate_1/disabled_parts_NOT_gate_1.xci",
+            "inst_hier_path": "Switches/NOT_gate",
+            "parameters": {
+              "C_OPERATION": {
+                "value": "not"
+              },
+              "C_SIZE": {
+                "value": "4"
+              }
+            }
+          }
+        },
+        "nets": {
+          "NOT_gate_Res": {
+            "ports": [
+              "NOT_gate/Res",
+              "xlslice_3/Din",
+              "xlslice_2/Din",
+              "xlslice_1/Din",
+              "xlslice_0/Din"
+            ]
+          },
+          "SW_1": {
+            "ports": [
+              "SW",
+              "NOT_gate/Op1"
+            ]
+          },
+          "xlslice_0_Dout": {
+            "ports": [
+              "xlslice_0/Dout",
+              "SW0"
+            ]
+          },
+          "xlslice_1_Dout": {
+            "ports": [
+              "xlslice_1/Dout",
+              "SW1"
+            ]
+          },
+          "xlslice_2_Dout": {
+            "ports": [
+              "xlslice_2/Dout",
+              "SW2"
+            ]
+          },
+          "xlslice_3_Dout": {
+            "ports": [
+              "xlslice_3/Dout",
+              "SW3"
+            ]
+          }
+        }
+      },
+      "GND": {
+        "vlnv": "xilinx.com:ip:xlconstant:1.1",
+        "ip_revision": "9",
+        "xci_name": "disabled_parts_GND_0",
+        "xci_path": "ip/disabled_parts_GND_0/disabled_parts_GND_0.xci",
+        "inst_hier_path": "GND",
+        "parameters": {
+          "CONST_VAL": {
+            "value": "0"
+          }
+        }
+      }
+    },
+    "nets": {
+      "Blue_1": {
+        "ports": [
+          "Switches/SW2",
+          "RGB_LED/Blue"
+        ]
+      },
+      "Green_1": {
+        "ports": [
+          "Switches/SW1",
+          "RGB_LED/Green"
+        ]
+      },
+      "RGB_LED_LEDS": {
+        "ports": [
+          "RGB_LED/RGB",
+          "RGB"
+        ]
+      },
+      "Red_1": {
+        "ports": [
+          "Switches/SW0",
+          "RGB_LED/Red"
+        ]
+      },
+      "SW_1": {
+        "ports": [
+          "SW",
+          "Switches/SW"
+        ]
+      },
+      "Switches_SW3": {
+        "ports": [
+          "Switches/SW3",
+          "BP"
+        ]
+      }
+    }
+  }
+}

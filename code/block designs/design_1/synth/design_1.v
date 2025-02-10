@@ -2,7 +2,7 @@
 //Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2024.2.1 (lin64) Build 5266912 Sun Dec 15 09:03:31 MST 2024
-//Date        : Mon Feb 10 17:08:51 2025
+//Date        : Mon Feb 10 21:40:14 2025
 //Host        : Electryc running 64-bit Gentoo Linux
 //Command     : generate_target design_1.bd
 //Design      : design_1
@@ -10,94 +10,9 @@
 //--------------------------------------------------------------------------------
 `timescale 1 ps / 1 ps
 
-module RGB_LED_imp_1Q09DIZ
-   (Blue,
-    Green,
-    RGB,
-    Red);
-  input [0:0]Blue;
-  input [0:0]Green;
-  output [2:0]RGB;
-  input [0:0]Red;
-
-  wire [0:0]Blue;
-  wire [0:0]Green;
-  wire [2:0]RGB;
-  wire [0:0]Red;
-  wire [2:0]concatenation_dout;
-
-  design_1_NOT_gate_0 NOT_gate
-       (.Op1(concatenation_dout),
-        .Res(RGB));
-  design_1_RGB_concat_0 RGB_concat
-       (.In0(Green),
-        .In1(Blue),
-        .In2(Red),
-        .dout(concatenation_dout));
-endmodule
-
-module RGB_cropped_imp_NX2AKE
-   (BLUE,
-    GREEN,
-    HDMI_DATA,
-    RED);
-  input [7:0]BLUE;
-  input [7:0]GREEN;
-  output [15:0]HDMI_DATA;
-  input [7:0]RED;
-
-  wire [7:0]BLUE;
-  wire [7:0]GREEN;
-  wire [15:0]HDMI_DATA;
-  wire [7:0]RED;
-
-  design_1_xlconcat_0_0 xlconcat_0
-       (.In0(BLUE[4:0]),
-        .In1(GREEN[5:0]),
-        .In2(RED[4:0]),
-        .dout(HDMI_DATA));
-endmodule
-
-module Switches_imp_MR45QH
-   (SW,
-    SW0,
-    SW1,
-    SW2,
-    SW3);
-  input [3:0]SW;
-  output [0:0]SW0;
-  output [0:0]SW1;
-  output [0:0]SW2;
-  output [0:0]SW3;
-
-  wire [3:0]NOT_gate_Res;
-  wire [3:0]SW;
-  wire [0:0]SW0;
-  wire [0:0]SW1;
-  wire [0:0]SW2;
-  wire [0:0]SW3;
-
-  design_1_NOT_gate_1 NOT_gate
-       (.Op1(SW),
-        .Res(NOT_gate_Res));
-  design_1_xlslice_0_0 xlslice_0
-       (.Din(NOT_gate_Res),
-        .Dout(SW0));
-  design_1_xlslice_1_0 xlslice_1
-       (.Din(NOT_gate_Res),
-        .Dout(SW1));
-  design_1_xlslice_2_0 xlslice_2
-       (.Din(NOT_gate_Res),
-        .Dout(SW2));
-  design_1_xlslice_3_0 xlslice_3
-       (.Din(NOT_gate_Res),
-        .Dout(SW3));
-endmodule
-
-(* CORE_GENERATION_INFO = "design_1,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=design_1,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=18,numReposBlks=15,numNonXlnxBlks=0,numHierBlks=3,maxHierDepth=1,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=1,numPkgbdBlks=0,bdsource=USER,synth_mode=Hierarchical}" *) (* HW_HANDOFF = "design_1.hwdef" *) 
+(* CORE_GENERATION_INFO = "design_1,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=design_1,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=6,numReposBlks=6,numNonXlnxBlks=0,numHierBlks=0,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=1,numPkgbdBlks=0,bdsource=USER,da_board_cnt=1,da_clkrst_cnt=1,da_ps7_cnt=1,synth_mode=Hierarchical}" *) (* HW_HANDOFF = "design_1.hwdef" *) 
 module design_1
-   (BP,
-    DDR_addr,
+   (DDR_addr,
     DDR_ba,
     DDR_cas_n,
     DDR_ck_n,
@@ -118,21 +33,19 @@ module design_1
     FIXED_IO_ps_clk,
     FIXED_IO_ps_porb,
     FIXED_IO_ps_srstb,
-    HDMI_DATA,
+    HDMI_BLUE,
     HDMI_DE,
+    HDMI_GREEN,
     HDMI_HSYNC,
-    HDMI_INTn,
     HDMI_PCLK,
+    HDMI_RED,
     HDMI_VSYNC,
     I2C0_scl_i,
     I2C0_scl_o,
     I2C0_scl_t,
     I2C0_sda_i,
     I2C0_sda_o,
-    I2C0_sda_t,
-    LEDS,
-    SW);
-  output [0:0]BP;
+    I2C0_sda_t);
   (* X_INTERFACE_INFO = "xilinx.com:interface:ddrx:1.0 DDR ADDR" *) (* X_INTERFACE_MODE = "Master" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME DDR, AXI_ARBITRATION_SCHEME TDM, BURST_LENGTH 8, CAN_DEBUG false, CAS_LATENCY 11, CAS_WRITE_LATENCY 11, CS_ENABLED true, DATA_MASK_ENABLED true, DATA_WIDTH 8, MEMORY_TYPE COMPONENTS, MEM_ADDR_MAP ROW_COLUMN_BANK, SLOT Single, TIMEPERIOD_PS 1250" *) inout [14:0]DDR_addr;
   (* X_INTERFACE_INFO = "xilinx.com:interface:ddrx:1.0 DDR BA" *) inout [2:0]DDR_ba;
   (* X_INTERFACE_INFO = "xilinx.com:interface:ddrx:1.0 DDR CAS_N" *) inout DDR_cas_n;
@@ -154,11 +67,12 @@ module design_1
   (* X_INTERFACE_INFO = "xilinx.com:display_processing_system7:fixedio:1.0 FIXED_IO PS_CLK" *) inout FIXED_IO_ps_clk;
   (* X_INTERFACE_INFO = "xilinx.com:display_processing_system7:fixedio:1.0 FIXED_IO PS_PORB" *) inout FIXED_IO_ps_porb;
   (* X_INTERFACE_INFO = "xilinx.com:display_processing_system7:fixedio:1.0 FIXED_IO PS_SRSTB" *) inout FIXED_IO_ps_srstb;
-  output [15:0]HDMI_DATA;
+  output [4:0]HDMI_BLUE;
   output HDMI_DE;
+  output [5:0]HDMI_GREEN;
   output HDMI_HSYNC;
-  inout HDMI_INTn;
   output HDMI_PCLK;
+  output [4:0]HDMI_RED;
   output HDMI_VSYNC;
   (* X_INTERFACE_INFO = "xilinx.com:interface:iic:1.0 I2C0 SCL_I" *) (* X_INTERFACE_MODE = "Master" *) input I2C0_scl_i;
   (* X_INTERFACE_INFO = "xilinx.com:interface:iic:1.0 I2C0 SCL_O" *) output I2C0_scl_o;
@@ -166,12 +80,7 @@ module design_1
   (* X_INTERFACE_INFO = "xilinx.com:interface:iic:1.0 I2C0 SDA_I" *) input I2C0_sda_i;
   (* X_INTERFACE_INFO = "xilinx.com:interface:iic:1.0 I2C0 SDA_O" *) output I2C0_sda_o;
   (* X_INTERFACE_INFO = "xilinx.com:interface:iic:1.0 I2C0 SDA_T" *) output I2C0_sda_t;
-  output [2:0]LEDS;
-  input [3:0]SW;
 
-  wire [7:0]BLUE_2;
-  wire [0:0]BP;
-  wire [0:0]Blue_1;
   wire [14:0]DDR_addr;
   wire [2:0]DDR_ba;
   wire DDR_cas_n;
@@ -193,11 +102,12 @@ module design_1
   wire FIXED_IO_ps_clk;
   wire FIXED_IO_ps_porb;
   wire FIXED_IO_ps_srstb;
-  wire [0:0]Green_1;
-  wire [15:0]HDMI_DATA;
+  wire [4:0]HDMI_BLUE;
   wire HDMI_DE;
+  wire [5:0]HDMI_GREEN;
   wire HDMI_HSYNC;
   wire HDMI_PCLK;
+  wire [4:0]HDMI_RED;
   wire HDMI_VSYNC;
   wire I2C0_scl_i;
   wire I2C0_scl_o;
@@ -205,12 +115,7 @@ module design_1
   wire I2C0_sda_i;
   wire I2C0_sda_o;
   wire I2C0_sda_t;
-  wire [7:0]Image_generator_0_GREEN;
-  wire [7:0]Image_generator_0_RED;
-  wire [2:0]LEDS;
-  wire [0:0]Red_1;
-  wire [3:0]SW;
-  wire axi_iic_0_iic2intc_irpt;
+  wire Pixel_clock_locked;
   wire [8:0]axi_smc_M00_AXI_ARADDR;
   wire axi_smc_M00_AXI_ARREADY;
   wire axi_smc_M00_AXI_ARVALID;
@@ -270,40 +175,22 @@ module design_1
   wire [3:0]processing_system7_0_M_AXI_GP0_WSTRB;
   wire processing_system7_0_M_AXI_GP0_WVALID;
 
-  design_1_GND_0 GND
-       ();
   design_1_Image_generator_0 Image_generator
-       (.BLUE(BLUE_2),
+       (.BLUE(HDMI_BLUE),
         .CLK(HDMI_PCLK),
         .DE(HDMI_DE),
-        .GREEN(Image_generator_0_GREEN),
+        .GREEN(HDMI_GREEN),
         .HSYNC(HDMI_HSYNC),
-        .RED(Image_generator_0_RED),
-        .RESETN(processing_system7_0_FCLK_RESET0_N),
+        .RED(HDMI_RED),
+        .RESETN(Pixel_clock_locked),
         .VSYNC(HDMI_VSYNC));
   design_1_Pixel_clock_0 Pixel_clock
        (.clk_in1(processing_system7_0_FCLK_CLK0),
         .clk_out1(HDMI_PCLK),
-        .resetn(processing_system7_0_FCLK_RESET0_N));
-  RGB_LED_imp_1Q09DIZ RGB_LED
-       (.Blue(Blue_1),
-        .Green(Green_1),
-        .RGB(LEDS),
-        .Red(Red_1));
-  RGB_cropped_imp_NX2AKE RGB_cropped
-       (.BLUE(BLUE_2),
-        .GREEN(Image_generator_0_GREEN),
-        .HDMI_DATA(HDMI_DATA),
-        .RED(Image_generator_0_RED));
-  Switches_imp_MR45QH Switches
-       (.SW(SW),
-        .SW0(Red_1),
-        .SW1(Green_1),
-        .SW2(Blue_1),
-        .SW3(BP));
+        .locked(Pixel_clock_locked),
+        .resetn(proc_sys_reset_0_peripheral_aresetn));
   design_1_axi_iic_0_0 axi_iic_0
-       (.iic2intc_irpt(axi_iic_0_iic2intc_irpt),
-        .s_axi_aclk(processing_system7_0_FCLK_CLK0),
+       (.s_axi_aclk(processing_system7_0_FCLK_CLK0),
         .s_axi_araddr(axi_smc_M00_AXI_ARADDR),
         .s_axi_aresetn(proc_sys_reset_0_peripheral_aresetn),
         .s_axi_arready(axi_smc_M00_AXI_ARREADY),
@@ -393,7 +280,7 @@ module design_1
         .mb_debug_sys_rst(1'b0),
         .peripheral_aresetn(proc_sys_reset_0_peripheral_aresetn),
         .slowest_sync_clk(processing_system7_0_FCLK_CLK0));
-  design_1_processing_system7_0_0 processing_system7_0
+  design_1_processing_system7_0_1 processing_system7_0
        (.DDR_Addr(DDR_addr),
         .DDR_BankAddr(DDR_ba),
         .DDR_CAS_n(DDR_cas_n),
@@ -413,7 +300,6 @@ module design_1
         .DDR_WEB(DDR_we_n),
         .FCLK_CLK0(processing_system7_0_FCLK_CLK0),
         .FCLK_RESET0_N(processing_system7_0_FCLK_RESET0_N),
-        .IRQ_F2P(axi_iic_0_iic2intc_irpt),
         .MIO(FIXED_IO_mio),
         .M_AXI_GP0_ACLK(processing_system7_0_FCLK_CLK0),
         .M_AXI_GP0_ARADDR(processing_system7_0_M_AXI_GP0_ARADDR),

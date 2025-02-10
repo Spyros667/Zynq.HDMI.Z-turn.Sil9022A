@@ -6,21 +6,6 @@
 
 (* BLOCK_STUB = "true" *)
 module design_1 (
-  BP,
-  HDMI_DATA,
-  HDMI_DE,
-  HDMI_HSYNC,
-  HDMI_INTn,
-  HDMI_PCLK,
-  HDMI_VSYNC,
-  LEDS,
-  SW,
-  I2C0_scl_i,
-  I2C0_scl_o,
-  I2C0_scl_t,
-  I2C0_sda_i,
-  I2C0_sda_o,
-  I2C0_sda_t,
   DDR_cas_n,
   DDR_cke,
   DDR_ck_n,
@@ -41,40 +26,22 @@ module design_1 (
   FIXED_IO_ddr_vrp,
   FIXED_IO_ps_srstb,
   FIXED_IO_ps_clk,
-  FIXED_IO_ps_porb
+  FIXED_IO_ps_porb,
+  I2C0_scl_i,
+  I2C0_scl_o,
+  I2C0_scl_t,
+  I2C0_sda_i,
+  I2C0_sda_o,
+  I2C0_sda_t,
+  HDMI_DE,
+  HDMI_HSYNC,
+  HDMI_PCLK,
+  HDMI_VSYNC,
+  HDMI_RED,
+  HDMI_BLUE,
+  HDMI_GREEN
 );
 
-  (* X_INTERFACE_IGNORE = "true" *)
-  output [0:0]BP;
-  (* X_INTERFACE_IGNORE = "true" *)
-  output [15:0]HDMI_DATA;
-  (* X_INTERFACE_IGNORE = "true" *)
-  output HDMI_DE;
-  (* X_INTERFACE_IGNORE = "true" *)
-  output HDMI_HSYNC;
-  (* X_INTERFACE_IGNORE = "true" *)
-  inout HDMI_INTn;
-  (* X_INTERFACE_IGNORE = "true" *)
-  output HDMI_PCLK;
-  (* X_INTERFACE_IGNORE = "true" *)
-  output HDMI_VSYNC;
-  (* X_INTERFACE_IGNORE = "true" *)
-  output [2:0]LEDS;
-  (* X_INTERFACE_IGNORE = "true" *)
-  input [3:0]SW;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:iic:1.0 I2C0 SCL_I" *)
-  (* X_INTERFACE_MODE = "master I2C0" *)
-  input I2C0_scl_i;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:iic:1.0 I2C0 SCL_O" *)
-  output I2C0_scl_o;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:iic:1.0 I2C0 SCL_T" *)
-  output I2C0_scl_t;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:iic:1.0 I2C0 SDA_I" *)
-  input I2C0_sda_i;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:iic:1.0 I2C0 SDA_O" *)
-  output I2C0_sda_o;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:iic:1.0 I2C0 SDA_T" *)
-  output I2C0_sda_t;
   (* X_INTERFACE_INFO = "xilinx.com:interface:ddrx:1.0 DDR CAS_N" *)
   (* X_INTERFACE_MODE = "master DDR" *)
   (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME DDR, CAN_DEBUG false, TIMEPERIOD_PS 1250, MEMORY_TYPE COMPONENTS, DATA_WIDTH 8, CS_ENABLED true, DATA_MASK_ENABLED true, SLOT Single, MEM_ADDR_MAP ROW_COLUMN_BANK, BURST_LENGTH 8, AXI_ARBITRATION_SCHEME TDM, CAS_LATENCY 11, CAS_WRITE_LATENCY 11" *)
@@ -121,6 +88,33 @@ module design_1 (
   inout FIXED_IO_ps_clk;
   (* X_INTERFACE_INFO = "xilinx.com:display_processing_system7:fixedio:1.0 FIXED_IO PS_PORB" *)
   inout FIXED_IO_ps_porb;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:iic:1.0 I2C0 SCL_I" *)
+  (* X_INTERFACE_MODE = "master I2C0" *)
+  input I2C0_scl_i;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:iic:1.0 I2C0 SCL_O" *)
+  output I2C0_scl_o;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:iic:1.0 I2C0 SCL_T" *)
+  output I2C0_scl_t;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:iic:1.0 I2C0 SDA_I" *)
+  input I2C0_sda_i;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:iic:1.0 I2C0 SDA_O" *)
+  output I2C0_sda_o;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:iic:1.0 I2C0 SDA_T" *)
+  output I2C0_sda_t;
+  (* X_INTERFACE_IGNORE = "true" *)
+  output HDMI_DE;
+  (* X_INTERFACE_IGNORE = "true" *)
+  output HDMI_HSYNC;
+  (* X_INTERFACE_IGNORE = "true" *)
+  output HDMI_PCLK;
+  (* X_INTERFACE_IGNORE = "true" *)
+  output HDMI_VSYNC;
+  (* X_INTERFACE_IGNORE = "true" *)
+  output [4:0]HDMI_RED;
+  (* X_INTERFACE_IGNORE = "true" *)
+  output [4:0]HDMI_BLUE;
+  (* X_INTERFACE_IGNORE = "true" *)
+  output [5:0]HDMI_GREEN;
 
   // stub module has no contents
 

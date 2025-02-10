@@ -2,7 +2,7 @@
 //Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2024.2.1 (lin64) Build 5266912 Sun Dec 15 09:03:31 MST 2024
-//Date        : Mon Feb 10 17:08:51 2025
+//Date        : Mon Feb 10 21:40:15 2025
 //Host        : Electryc running 64-bit Gentoo Linux
 //Command     : generate_target design_1_wrapper.bd
 //Design      : design_1_wrapper
@@ -11,8 +11,7 @@
 `timescale 1 ps / 1 ps
 
 module design_1_wrapper
-   (BP,
-    DDR_addr,
+   (DDR_addr,
     DDR_ba,
     DDR_cas_n,
     DDR_ck_n,
@@ -33,17 +32,15 @@ module design_1_wrapper
     FIXED_IO_ps_clk,
     FIXED_IO_ps_porb,
     FIXED_IO_ps_srstb,
-    HDMI_DATA,
+    HDMI_BLUE,
     HDMI_DE,
+    HDMI_GREEN,
     HDMI_HSYNC,
-    HDMI_INTn,
     HDMI_PCLK,
+    HDMI_RED,
     HDMI_VSYNC,
     I2C0_scl_io,
-    I2C0_sda_io,
-    LEDS,
-    SW);
-  output [0:0]BP;
+    I2C0_sda_io);
   inout [14:0]DDR_addr;
   inout [2:0]DDR_ba;
   inout DDR_cas_n;
@@ -65,18 +62,16 @@ module design_1_wrapper
   inout FIXED_IO_ps_clk;
   inout FIXED_IO_ps_porb;
   inout FIXED_IO_ps_srstb;
-  output [15:0]HDMI_DATA;
+  output [4:0]HDMI_BLUE;
   output HDMI_DE;
+  output [5:0]HDMI_GREEN;
   output HDMI_HSYNC;
-  inout HDMI_INTn;
   output HDMI_PCLK;
+  output [4:0]HDMI_RED;
   output HDMI_VSYNC;
   inout I2C0_scl_io;
   inout I2C0_sda_io;
-  output [2:0]LEDS;
-  input [3:0]SW;
 
-  wire [0:0]BP;
   wire [14:0]DDR_addr;
   wire [2:0]DDR_ba;
   wire DDR_cas_n;
@@ -98,11 +93,12 @@ module design_1_wrapper
   wire FIXED_IO_ps_clk;
   wire FIXED_IO_ps_porb;
   wire FIXED_IO_ps_srstb;
-  wire [15:0]HDMI_DATA;
+  wire [4:0]HDMI_BLUE;
   wire HDMI_DE;
+  wire [5:0]HDMI_GREEN;
   wire HDMI_HSYNC;
-  wire HDMI_INTn;
   wire HDMI_PCLK;
+  wire [4:0]HDMI_RED;
   wire HDMI_VSYNC;
   wire I2C0_scl_i;
   wire I2C0_scl_io;
@@ -112,8 +108,6 @@ module design_1_wrapper
   wire I2C0_sda_io;
   wire I2C0_sda_o;
   wire I2C0_sda_t;
-  wire [2:0]LEDS;
-  wire [3:0]SW;
 
   IOBUF I2C0_scl_iobuf
        (.I(I2C0_scl_o),
@@ -126,8 +120,7 @@ module design_1_wrapper
         .O(I2C0_sda_i),
         .T(I2C0_sda_t));
   design_1 design_1_i
-       (.BP(BP),
-        .DDR_addr(DDR_addr),
+       (.DDR_addr(DDR_addr),
         .DDR_ba(DDR_ba),
         .DDR_cas_n(DDR_cas_n),
         .DDR_ck_n(DDR_ck_n),
@@ -148,18 +141,17 @@ module design_1_wrapper
         .FIXED_IO_ps_clk(FIXED_IO_ps_clk),
         .FIXED_IO_ps_porb(FIXED_IO_ps_porb),
         .FIXED_IO_ps_srstb(FIXED_IO_ps_srstb),
-        .HDMI_DATA(HDMI_DATA),
+        .HDMI_BLUE(HDMI_BLUE),
         .HDMI_DE(HDMI_DE),
+        .HDMI_GREEN(HDMI_GREEN),
         .HDMI_HSYNC(HDMI_HSYNC),
-        .HDMI_INTn(HDMI_INTn),
         .HDMI_PCLK(HDMI_PCLK),
+        .HDMI_RED(HDMI_RED),
         .HDMI_VSYNC(HDMI_VSYNC),
         .I2C0_scl_i(I2C0_scl_i),
         .I2C0_scl_o(I2C0_scl_o),
         .I2C0_scl_t(I2C0_scl_t),
         .I2C0_sda_i(I2C0_sda_i),
         .I2C0_sda_o(I2C0_sda_o),
-        .I2C0_sda_t(I2C0_sda_t),
-        .LEDS(LEDS),
-        .SW(SW));
+        .I2C0_sda_t(I2C0_sda_t));
 endmodule

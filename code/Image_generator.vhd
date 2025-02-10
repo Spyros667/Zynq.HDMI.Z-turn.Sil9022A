@@ -32,9 +32,9 @@ entity Image_generator is
 		-- ========
 		--  Colors
 		-- ========
-		RED		: out std_logic_vector(7 downto 0);
-		GREEN	: out std_logic_vector(7 downto 0);
-		BLUE	: out std_logic_vector(7 downto 0);
+		RED		: out std_logic_vector(4 downto 0);
+		GREEN	: out std_logic_vector(5 downto 0);
+		BLUE	: out std_logic_vector(4 downto 0);
 
 		-- =======================================
 		--  Data Enable (signals visible pixels)
@@ -96,9 +96,9 @@ begin
 	-- ========
 	--  Output
 	-- ========
-	RED		<= x"19";
-	GREEN	<= x"19";
-	BLUE	<= x"70";
+	RED		<= std_logic_vector(to_unsigned(16#19#, RED'length));
+	GREEN	<= std_logic_vector(to_unsigned(16#19#, GREEN'length));
+	BLUE	<= std_logic_vector(to_unsigned(16#70#, BLUE'length));
 
 	-- ================
 	--  Advance line

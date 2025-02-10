@@ -1,57 +1,88 @@
 {
-   "ActiveEmotionalView":"Default View",
-   "Default View_ScaleFactor":"0.231343",
-   "Default View_TopLeft":"-890,-4",
+   "ActiveEmotionalView":"Color Coded",
+   "Color Coded_ExpandedHierarchyInLayout":"",
+   "Color Coded_Layout":"# # String gsaved with Nlview 7.8.0 2024-04-26 e1825d835c VDI=44 GEI=38 GUI=JA:21.0 TLS
+#  -string -flagsOSRD
+preplace port DDR -pg 1 -lvl 4 -x 1010 -y 50 -defaultsOSRD
+preplace port FIXED_IO -pg 1 -lvl 4 -x 1010 -y 70 -defaultsOSRD
+preplace port I2C0 -pg 1 -lvl 4 -x 1010 -y 160 -defaultsOSRD
+preplace port port-id_HDMI_DE -pg 1 -lvl 4 -x 1010 -y 380 -defaultsOSRD
+preplace port port-id_HDMI_HSYNC -pg 1 -lvl 4 -x 1010 -y 400 -defaultsOSRD
+preplace port port-id_HDMI_PCLK -pg 1 -lvl 4 -x 1010 -y 260 -defaultsOSRD
+preplace port port-id_HDMI_VSYNC -pg 1 -lvl 4 -x 1010 -y 420 -defaultsOSRD
+preplace portBus HDMI_RED -pg 1 -lvl 4 -x 1010 -y 320 -defaultsOSRD
+preplace portBus HDMI_BLUE -pg 1 -lvl 4 -x 1010 -y 360 -defaultsOSRD
+preplace portBus HDMI_GREEN -pg 1 -lvl 4 -x 1010 -y 340 -defaultsOSRD
+preplace inst Image_generator -pg 1 -lvl 3 -x 870 -y 370 -defaultsOSRD
+preplace inst Pixel_clock -pg 1 -lvl 2 -x 600 -y 370 -defaultsOSRD
+preplace inst axi_iic_0 -pg 1 -lvl 3 -x 870 -y 180 -defaultsOSRD
+preplace inst axi_smc -pg 1 -lvl 2 -x 600 -y 160 -defaultsOSRD
+preplace inst proc_sys_reset_0 -pg 1 -lvl 1 -x 230 -y 300 -defaultsOSRD
+preplace inst processing_system7_0 -pg 1 -lvl 1 -x 230 -y 90 -defaultsOSRD
+preplace netloc Image_generator_0_DE 1 3 1 NJ 380
+preplace netloc Image_generator_0_HSYNC 1 3 1 NJ 400
+preplace netloc Image_generator_0_VSYNC 1 3 1 NJ 420
+preplace netloc Image_generator_BLUE 1 3 1 NJ 360
+preplace netloc Image_generator_GREEN 1 3 1 NJ 340
+preplace netloc Image_generator_RED 1 3 1 NJ 320
+preplace netloc Pixel_clock_clk_out1 1 2 2 740 260 NJ
+preplace netloc proc_sys_reset_0_peripheral_aresetn 1 1 2 450 60 750J
+preplace netloc processing_system7_0_FCLK_CLK0 1 0 3 20 190 460 80 740
+preplace netloc processing_system7_0_FCLK_RESET0_N 1 0 2 30 200 430
+preplace netloc Pixel_clock_locked 1 2 1 N 380
+preplace netloc axi_iic_0_IIC 1 3 1 NJ 160
+preplace netloc axi_smc_M00_AXI 1 2 1 N 160
+preplace netloc processing_system7_0_DDR 1 1 3 NJ 50 NJ 50 NJ
+preplace netloc processing_system7_0_FIXED_IO 1 1 3 NJ 70 NJ 70 NJ
+preplace netloc processing_system7_0_M_AXI_GP0 1 1 1 440 90n
+levelinfo -pg 1 0 230 600 870 1010
+pagesize -pg 1 -db -bbox -sgen 0 0 1190 470
+",
+   "Color Coded_ScaleFactor":"1.0332",
+   "Color Coded_TopLeft":"679,226",
+   "Default View_ScaleFactor":"0.580563",
+   "Default View_TopLeft":"10,-174",
    "ExpandedHierarchyInLayout":"",
    "guistr":"# # String gsaved with Nlview 7.8.0 2024-04-26 e1825d835c VDI=44 GEI=38 GUI=JA:21.0 TLS
 #  -string -flagsOSRD
-preplace port DDR -pg 1 -lvl 4 -x 1030 -y 730 -defaultsOSRD
-preplace port FIXED_IO -pg 1 -lvl 4 -x 1030 -y 750 -defaultsOSRD
-preplace port I2C0 -pg 1 -lvl 4 -x 1030 -y 630 -defaultsOSRD
-preplace port port-id_HDMI_DE -pg 1 -lvl 4 -x 1030 -y 310 -defaultsOSRD
-preplace port port-id_HDMI_HSYNC -pg 1 -lvl 4 -x 1030 -y 330 -defaultsOSRD
-preplace port port-id_HDMI_INTn -pg 1 -lvl 4 -x 1030 -y 20 -defaultsOSRD
-preplace port port-id_HDMI_PCLK -pg 1 -lvl 4 -x 1030 -y 410 -defaultsOSRD
-preplace port port-id_HDMI_VSYNC -pg 1 -lvl 4 -x 1030 -y 350 -defaultsOSRD
-preplace portBus BP -pg 1 -lvl 4 -x 1030 -y 150 -defaultsOSRD
-preplace portBus HDMI_DATA -pg 1 -lvl 4 -x 1030 -y 230 -defaultsOSRD
-preplace portBus LEDS -pg 1 -lvl 4 -x 1030 -y 80 -defaultsOSRD
-preplace portBus SW -pg 1 -lvl 0 -x 0 -y 110 -defaultsOSRD
-preplace inst GND -pg 1 -lvl 1 -x 230 -y 50 -defaultsOSRD
-preplace inst Image_generator -pg 1 -lvl 2 -x 600 -y 300 -defaultsOSRD
-preplace inst Pixel_clock -pg 1 -lvl 3 -x 880 -y 480 -defaultsOSRD
-preplace inst RGB_LED -pg 1 -lvl 3 -x 880 -y 80 -defaultsOSRD
-preplace inst RGB_cropped -pg 1 -lvl 3 -x 880 -y 230 -defaultsOSRD
-preplace inst Switches -pg 1 -lvl 2 -x 600 -y 110 -defaultsOSRD
-preplace inst axi_iic_0 -pg 1 -lvl 3 -x 880 -y 650 -defaultsOSRD
-preplace inst axi_smc -pg 1 -lvl 2 -x 600 -y 630 -defaultsOSRD
-preplace inst proc_sys_reset_0 -pg 1 -lvl 1 -x 230 -y 970 -defaultsOSRD
-preplace inst processing_system7_0 -pg 1 -lvl 1 -x 230 -y 770 -defaultsOSRD
-preplace netloc BLUE_2 1 2 1 750 230n
-preplace netloc Blue_1 1 2 1 750 100n
-preplace netloc Green_1 1 2 1 740 60n
-preplace netloc Image_generator_0_DE 1 2 2 NJ 310 NJ
-preplace netloc Image_generator_0_GREEN 1 2 1 740 210n
-preplace netloc Image_generator_0_HSYNC 1 2 2 NJ 330 NJ
-preplace netloc Image_generator_0_RED 1 2 1 N 250
-preplace netloc Image_generator_0_VSYNC 1 2 2 NJ 350 NJ
-preplace netloc Pixel_clock_clk_out1 1 1 3 460 410 NJ 410 1010
-preplace netloc RGB_HDMI_DATA 1 3 1 NJ 230
-preplace netloc RGB_LED_LEDS 1 3 1 NJ 80
-preplace netloc Red_1 1 2 1 N 80
-preplace netloc SW_1 1 0 2 NJ 110 NJ
-preplace netloc Switches_SW3 1 2 2 740J 150 NJ
-preplace netloc axi_iic_0_iic2intc_irpt 1 0 4 30 550 NJ 550 NJ 550 1010
-preplace netloc proc_sys_reset_0_peripheral_aresetn 1 1 2 460 710 750J
-preplace netloc processing_system7_0_FCLK_CLK0 1 0 3 20 670 440 540 740
-preplace netloc processing_system7_0_FCLK_RESET0_N 1 0 3 30 870 430 470 NJ
-preplace netloc axi_iic_0_IIC 1 3 1 NJ 630
-preplace netloc axi_smc_M00_AXI 1 2 1 N 630
-preplace netloc processing_system7_0_DDR 1 1 3 NJ 730 NJ 730 NJ
-preplace netloc processing_system7_0_FIXED_IO 1 1 3 NJ 750 NJ 750 NJ
-preplace netloc processing_system7_0_M_AXI_GP0 1 1 1 450 610n
-levelinfo -pg 1 0 230 600 880 1030
-pagesize -pg 1 -db -bbox -sgen -100 0 1200 1060
+preplace port DDR -pg 1 -lvl 4 -x 1010 -y 50 -defaultsOSRD
+preplace port FIXED_IO -pg 1 -lvl 4 -x 1010 -y 70 -defaultsOSRD
+preplace port I2C0 -pg 1 -lvl 4 -x 1010 -y 280 -defaultsOSRD
+preplace port port-id_HDMI_DE -pg 1 -lvl 4 -x 1010 -y 500 -defaultsOSRD
+preplace port port-id_HDMI_HSYNC -pg 1 -lvl 4 -x 1010 -y 520 -defaultsOSRD
+preplace port port-id_HDMI_PCLK -pg 1 -lvl 4 -x 1010 -y 380 -defaultsOSRD
+preplace port port-id_HDMI_VSYNC -pg 1 -lvl 4 -x 1010 -y 540 -defaultsOSRD
+preplace portBus HDMI_RED -pg 1 -lvl 4 -x 1010 -y 440 -defaultsOSRD
+preplace portBus HDMI_BLUE -pg 1 -lvl 4 -x 1010 -y 480 -defaultsOSRD
+preplace portBus HDMI_GREEN -pg 1 -lvl 4 -x 1010 -y 460 -defaultsOSRD
+preplace inst Image_generator -pg 1 -lvl 3 -x 870 -y 490 -defaultsOSRD
+preplace inst Pixel_clock -pg 1 -lvl 2 -x 600 -y 430 -defaultsOSRD
+preplace inst axi_iic_0 -pg 1 -lvl 3 -x 870 -y 300 -defaultsOSRD
+preplace inst axi_smc -pg 1 -lvl 2 -x 600 -y 280 -defaultsOSRD
+preplace inst proc_sys_reset_0 -pg 1 -lvl 1 -x 230 -y 310 -defaultsOSRD
+preplace inst processing_system7_0 -pg 1 -lvl 1 -x 230 -y 90 -defaultsOSRD
+preplace netloc Image_generator_0_DE 1 3 1 NJ 500
+preplace netloc Image_generator_0_HSYNC 1 3 1 NJ 520
+preplace netloc Image_generator_0_VSYNC 1 3 1 NJ 540
+preplace netloc Pixel_clock_clk_out1 1 2 2 750 380 NJ
+preplace netloc axi_iic_0_iic2intc_irpt 1 0 4 30 190 NJ 190 NJ 190 990
+preplace netloc proc_sys_reset_0_peripheral_aresetn 1 1 2 450 200 750
+preplace netloc processing_system7_0_FCLK_CLK0 1 0 3 20 210 440 360 740J
+preplace netloc processing_system7_0_FCLK_RESET0_N 1 0 3 30 200 430 500 NJ
+preplace netloc Image_generator_GREEN 1 3 1 NJ 460
+preplace netloc Image_generator_BLUE 1 3 1 NJ 480
+preplace netloc Image_generator_RED 1 3 1 NJ 440
+preplace netloc axi_iic_0_IIC 1 3 1 NJ 280
+preplace netloc axi_smc_M00_AXI 1 2 1 N 280
+preplace netloc processing_system7_0_DDR 1 1 3 NJ 50 NJ 50 NJ
+preplace netloc processing_system7_0_FIXED_IO 1 1 3 NJ 70 NJ 70 NJ
+preplace netloc processing_system7_0_M_AXI_GP0 1 1 1 460 90n
+levelinfo -pg 1 0 230 600 870 1010
+pagesize -pg 1 -db -bbox -sgen 0 0 1190 590
 "
 }
-
+{
+   "da_board_cnt":"1",
+   "da_clkrst_cnt":"1",
+   "da_ps7_cnt":"1"
+}

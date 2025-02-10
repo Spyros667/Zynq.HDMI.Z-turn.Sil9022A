@@ -1,32 +1,18 @@
 {
   "design": {
     "design_info": {
-      "boundary_crc": "0xB039ED04F8CA8E2B",
+      "boundary_crc": "0xBC46F0DDB96659A3",
       "device": "xc7z020clg400-1",
       "name": "design_1",
+      "pfm_name": "vendor:lib:design_1:1.0",
       "rev_ctrl_bd_flag": "RevCtrlBdOff",
       "synth_flow_mode": "Hierarchical",
       "tool_version": "2024.2.1",
       "validated": "true"
     },
     "design_tree": {
-      "GND": "",
       "Image_generator": "",
       "Pixel_clock": "",
-      "RGB_LED": {
-        "RGB_concat": "",
-        "NOT_gate": ""
-      },
-      "RGB_cropped": {
-        "xlconcat_0": ""
-      },
-      "Switches": {
-        "xlslice_3": "",
-        "xlslice_2": "",
-        "xlslice_1": "",
-        "xlslice_0": "",
-        "NOT_gate": ""
-      },
       "axi_iic_0": "",
       "axi_smc": "",
       "proc_sys_reset_0": "",
@@ -234,30 +220,11 @@
       }
     },
     "ports": {
-      "BP": {
-        "direction": "O",
-        "left": "0",
-        "right": "0"
-      },
-      "HDMI_DATA": {
-        "direction": "O",
-        "left": "15",
-        "right": "0",
-        "parameters": {
-          "PortWidth": {
-            "value": "16",
-            "value_src": "ip_prop"
-          }
-        }
-      },
       "HDMI_DE": {
         "direction": "O"
       },
       "HDMI_HSYNC": {
         "direction": "O"
-      },
-      "HDMI_INTn": {
-        "direction": "IO"
       },
       "HDMI_PCLK": {
         "direction": "O",
@@ -279,50 +246,23 @@
       "HDMI_VSYNC": {
         "direction": "O"
       },
-      "LEDS": {
+      "HDMI_RED": {
         "direction": "O",
-        "left": "2",
-        "right": "0",
-        "parameters": {
-          "PortType": {
-            "value": "undef",
-            "value_src": "ip_prop"
-          },
-          "PortType.PROP_SRC": {
-            "value": "false",
-            "value_src": "ip_prop"
-          }
-        }
+        "left": "4",
+        "right": "0"
       },
-      "SW": {
-        "direction": "I",
-        "left": "3",
-        "right": "0",
-        "parameters": {
-          "PortType": {
-            "value": "undef",
-            "value_src": "ip_prop"
-          },
-          "PortType.PROP_SRC": {
-            "value": "false",
-            "value_src": "ip_prop"
-          }
-        }
+      "HDMI_BLUE": {
+        "direction": "O",
+        "left": "4",
+        "right": "0"
+      },
+      "HDMI_GREEN": {
+        "direction": "O",
+        "left": "5",
+        "right": "0"
       }
     },
     "components": {
-      "GND": {
-        "vlnv": "xilinx.com:ip:xlconstant:1.1",
-        "ip_revision": "9",
-        "xci_name": "design_1_GND_0",
-        "xci_path": "ip/design_1_GND_0/design_1_GND_0.xci",
-        "inst_hier_path": "GND",
-        "parameters": {
-          "CONST_VAL": {
-            "value": "0"
-          }
-        }
-      },
       "Image_generator": {
         "vlnv": "xilinx.com:module_ref:Image_generator:1.0",
         "ip_revision": "1",
@@ -369,17 +309,17 @@
           },
           "RED": {
             "direction": "O",
-            "left": "7",
+            "left": "4",
             "right": "0"
           },
           "GREEN": {
             "direction": "O",
-            "left": "7",
+            "left": "5",
             "right": "0"
           },
           "BLUE": {
             "direction": "O",
-            "left": "7",
+            "left": "4",
             "right": "0"
           },
           "DE": {
@@ -424,343 +364,17 @@
           "RESET_TYPE": {
             "value": "ACTIVE_LOW"
           },
-          "USE_LOCKED": {
+          "USE_INCLK_STOPPED": {
             "value": "false"
+          },
+          "USE_LOCKED": {
+            "value": "true"
           },
           "USE_POWER_DOWN": {
             "value": "false"
           },
           "USE_RESET": {
             "value": "true"
-          }
-        }
-      },
-      "RGB_LED": {
-        "ports": {
-          "RGB": {
-            "direction": "O",
-            "left": "2",
-            "right": "0"
-          },
-          "Green": {
-            "direction": "I",
-            "left": "0",
-            "right": "0"
-          },
-          "Red": {
-            "direction": "I",
-            "left": "0",
-            "right": "0"
-          },
-          "Blue": {
-            "direction": "I",
-            "left": "0",
-            "right": "0"
-          }
-        },
-        "components": {
-          "RGB_concat": {
-            "vlnv": "xilinx.com:ip:xlconcat:2.1",
-            "ip_revision": "6",
-            "xci_name": "design_1_RGB_concat_0",
-            "xci_path": "ip/design_1_RGB_concat_0/design_1_RGB_concat_0.xci",
-            "inst_hier_path": "RGB_LED/RGB_concat",
-            "parameters": {
-              "NUM_PORTS": {
-                "value": "3"
-              }
-            }
-          },
-          "NOT_gate": {
-            "vlnv": "xilinx.com:ip:util_vector_logic:2.0",
-            "ip_revision": "4",
-            "xci_name": "design_1_NOT_gate_0",
-            "xci_path": "ip/design_1_NOT_gate_0/design_1_NOT_gate_0.xci",
-            "inst_hier_path": "RGB_LED/NOT_gate",
-            "parameters": {
-              "C_OPERATION": {
-                "value": "not"
-              },
-              "C_SIZE": {
-                "value": "3"
-              }
-            }
-          }
-        },
-        "nets": {
-          "In0_1": {
-            "ports": [
-              "Green",
-              "RGB_concat/In0"
-            ]
-          },
-          "In1_1": {
-            "ports": [
-              "Blue",
-              "RGB_concat/In1"
-            ]
-          },
-          "In2_1": {
-            "ports": [
-              "Red",
-              "RGB_concat/In2"
-            ]
-          },
-          "concatenation_dout": {
-            "ports": [
-              "RGB_concat/dout",
-              "NOT_gate/Op1"
-            ]
-          },
-          "util_vector_logic_0_Res": {
-            "ports": [
-              "NOT_gate/Res",
-              "RGB"
-            ]
-          }
-        }
-      },
-      "RGB_cropped": {
-        "ports": {
-          "GREEN": {
-            "direction": "I",
-            "left": "7",
-            "right": "0"
-          },
-          "BLUE": {
-            "direction": "I",
-            "left": "7",
-            "right": "0"
-          },
-          "RED": {
-            "direction": "I",
-            "left": "7",
-            "right": "0"
-          },
-          "HDMI_DATA": {
-            "direction": "O",
-            "left": "15",
-            "right": "0"
-          }
-        },
-        "components": {
-          "xlconcat_0": {
-            "vlnv": "xilinx.com:ip:xlconcat:2.1",
-            "ip_revision": "6",
-            "xci_name": "design_1_xlconcat_0_0",
-            "xci_path": "ip/design_1_xlconcat_0_0/design_1_xlconcat_0_0.xci",
-            "inst_hier_path": "RGB_cropped/xlconcat_0",
-            "parameters": {
-              "IN0_WIDTH": {
-                "value": "5"
-              },
-              "IN1_WIDTH": {
-                "value": "6"
-              },
-              "IN2_WIDTH": {
-                "value": "5"
-              },
-              "IN3_WIDTH": {
-                "value": "1"
-              },
-              "IN4_WIDTH": {
-                "value": "1"
-              },
-              "IN5_WIDTH": {
-                "value": "1"
-              },
-              "IN6_WIDTH": {
-                "value": "1"
-              },
-              "NUM_PORTS": {
-                "value": "3"
-              }
-            }
-          }
-        },
-        "nets": {
-          "In0_0_1": {
-            "ports": [
-              "BLUE",
-              "xlconcat_0/In0"
-            ]
-          },
-          "In1_0_1": {
-            "ports": [
-              "GREEN",
-              "xlconcat_0/In1"
-            ]
-          },
-          "In2_0_1": {
-            "ports": [
-              "RED",
-              "xlconcat_0/In2"
-            ]
-          },
-          "xlconcat_0_dout": {
-            "ports": [
-              "xlconcat_0/dout",
-              "HDMI_DATA"
-            ]
-          }
-        }
-      },
-      "Switches": {
-        "ports": {
-          "SW": {
-            "direction": "I",
-            "left": "3",
-            "right": "0"
-          },
-          "SW0": {
-            "direction": "O",
-            "left": "0",
-            "right": "0"
-          },
-          "SW1": {
-            "direction": "O",
-            "left": "0",
-            "right": "0"
-          },
-          "SW2": {
-            "direction": "O",
-            "left": "0",
-            "right": "0"
-          },
-          "SW3": {
-            "direction": "O",
-            "left": "0",
-            "right": "0"
-          }
-        },
-        "components": {
-          "xlslice_3": {
-            "vlnv": "xilinx.com:ip:xlslice:1.0",
-            "ip_revision": "4",
-            "xci_name": "design_1_xlslice_3_0",
-            "xci_path": "ip/design_1_xlslice_3_0/design_1_xlslice_3_0.xci",
-            "inst_hier_path": "Switches/xlslice_3",
-            "parameters": {
-              "DIN_FROM": {
-                "value": "0"
-              },
-              "DIN_TO": {
-                "value": "0"
-              },
-              "DIN_WIDTH": {
-                "value": "4"
-              }
-            }
-          },
-          "xlslice_2": {
-            "vlnv": "xilinx.com:ip:xlslice:1.0",
-            "ip_revision": "4",
-            "xci_name": "design_1_xlslice_2_0",
-            "xci_path": "ip/design_1_xlslice_2_0/design_1_xlslice_2_0.xci",
-            "inst_hier_path": "Switches/xlslice_2",
-            "parameters": {
-              "DIN_FROM": {
-                "value": "1"
-              },
-              "DIN_TO": {
-                "value": "1"
-              },
-              "DIN_WIDTH": {
-                "value": "4"
-              }
-            }
-          },
-          "xlslice_1": {
-            "vlnv": "xilinx.com:ip:xlslice:1.0",
-            "ip_revision": "4",
-            "xci_name": "design_1_xlslice_1_0",
-            "xci_path": "ip/design_1_xlslice_1_0/design_1_xlslice_1_0.xci",
-            "inst_hier_path": "Switches/xlslice_1",
-            "parameters": {
-              "DIN_FROM": {
-                "value": "2"
-              },
-              "DIN_TO": {
-                "value": "2"
-              },
-              "DIN_WIDTH": {
-                "value": "4"
-              }
-            }
-          },
-          "xlslice_0": {
-            "vlnv": "xilinx.com:ip:xlslice:1.0",
-            "ip_revision": "4",
-            "xci_name": "design_1_xlslice_0_0",
-            "xci_path": "ip/design_1_xlslice_0_0/design_1_xlslice_0_0.xci",
-            "inst_hier_path": "Switches/xlslice_0",
-            "parameters": {
-              "DIN_FROM": {
-                "value": "3"
-              },
-              "DIN_TO": {
-                "value": "3"
-              },
-              "DIN_WIDTH": {
-                "value": "4"
-              }
-            }
-          },
-          "NOT_gate": {
-            "vlnv": "xilinx.com:ip:util_vector_logic:2.0",
-            "ip_revision": "4",
-            "xci_name": "design_1_NOT_gate_1",
-            "xci_path": "ip/design_1_NOT_gate_1/design_1_NOT_gate_1.xci",
-            "inst_hier_path": "Switches/NOT_gate",
-            "parameters": {
-              "C_OPERATION": {
-                "value": "not"
-              },
-              "C_SIZE": {
-                "value": "4"
-              }
-            }
-          }
-        },
-        "nets": {
-          "NOT_gate_Res": {
-            "ports": [
-              "NOT_gate/Res",
-              "xlslice_3/Din",
-              "xlslice_2/Din",
-              "xlslice_1/Din",
-              "xlslice_0/Din"
-            ]
-          },
-          "SW_1": {
-            "ports": [
-              "SW",
-              "NOT_gate/Op1"
-            ]
-          },
-          "xlslice_0_Dout": {
-            "ports": [
-              "xlslice_0/Dout",
-              "SW0"
-            ]
-          },
-          "xlslice_1_Dout": {
-            "ports": [
-              "xlslice_1/Dout",
-              "SW1"
-            ]
-          },
-          "xlslice_2_Dout": {
-            "ports": [
-              "xlslice_2/Dout",
-              "SW2"
-            ]
-          },
-          "xlslice_3_Dout": {
-            "ports": [
-              "xlslice_3/Dout",
-              "SW3"
-            ]
           }
         }
       },
@@ -844,8 +458,8 @@
       "processing_system7_0": {
         "vlnv": "xilinx.com:ip:processing_system7:5.5",
         "ip_revision": "6",
-        "xci_name": "design_1_processing_system7_0_0",
-        "xci_path": "ip/design_1_processing_system7_0_0/design_1_processing_system7_0_0.xci",
+        "xci_name": "design_1_processing_system7_0_1",
+        "xci_path": "ip/design_1_processing_system7_0_1/design_1_processing_system7_0_1.xci",
         "inst_hier_path": "processing_system7_0",
         "parameters": {
           "PCW_ACT_APU_PERIPHERAL_FREQMHZ": {
@@ -926,6 +540,9 @@
           "PCW_CAN0_PERIPHERAL_ENABLE": {
             "value": "0"
           },
+          "PCW_CAN_PERIPHERAL_FREQMHZ": {
+            "value": "100"
+          },
           "PCW_CAN_PERIPHERAL_VALID": {
             "value": "0"
           },
@@ -971,6 +588,9 @@
           "PCW_ENET0_PERIPHERAL_ENABLE": {
             "value": "0"
           },
+          "PCW_ENET_RESET_ENABLE": {
+            "value": "0"
+          },
           "PCW_EN_CAN0": {
             "value": "0"
           },
@@ -990,9 +610,6 @@
             "value": "1"
           },
           "PCW_EN_EMIO_I2C0": {
-            "value": "0"
-          },
-          "PCW_EN_EMIO_I2C1": {
             "value": "0"
           },
           "PCW_EN_EMIO_TTC0": {
@@ -1092,10 +709,7 @@
             "value": "0"
           },
           "PCW_I2C_RESET_ENABLE": {
-            "value": "1"
-          },
-          "PCW_IRQ_F2P_INTR": {
-            "value": "1"
+            "value": "0"
           },
           "PCW_MIO_0_IOTYPE": {
             "value": "LVCMOS 3.3V"
@@ -1633,7 +1247,7 @@
             "value": "1"
           },
           "PCW_QSPI_PERIPHERAL_FREQMHZ": {
-            "value": "200"
+            "value": "200.000000"
           },
           "PCW_QSPI_QSPI_IO": {
             "value": "MIO 1 .. 6"
@@ -1682,6 +1296,9 @@
           },
           "PCW_TTC0_PERIPHERAL_ENABLE": {
             "value": "0"
+          },
+          "PCW_TTC_PERIPHERAL_FREQMHZ": {
+            "value": "50"
           },
           "PCW_UART0_PERIPHERAL_ENABLE": {
             "value": "0"
@@ -1786,10 +1403,7 @@
             "value": "0"
           },
           "PCW_USB_RESET_ENABLE": {
-            "value": "1"
-          },
-          "PCW_USE_FABRIC_INTERRUPT": {
-            "value": "1"
+            "value": "0"
           },
           "PCW_USE_M_AXI_GP0": {
             "value": "1"
@@ -1932,7 +1546,7 @@
           }
         },
         "pfm_attributes": {
-          "CLOCK": "FCLK_CLK0 {id \"3\" is_default \"true\" proc_sys_reset \"/proc_sys_reset_0\" status \"fixed\" freq_hz \"100000000\"}"
+          "CLOCK": "FCLK_CLK0 {id \"5\" is_default \"true\" proc_sys_reset \"/proc_sys_reset_0\" status \"fixed\" freq_hz \"100000000\"}"
         }
       }
     },
@@ -1969,34 +1583,10 @@
       }
     },
     "nets": {
-      "BLUE_2": {
-        "ports": [
-          "Image_generator/BLUE",
-          "RGB_cropped/BLUE"
-        ]
-      },
-      "Blue_1": {
-        "ports": [
-          "Switches/SW2",
-          "RGB_LED/Blue"
-        ]
-      },
-      "Green_1": {
-        "ports": [
-          "Switches/SW1",
-          "RGB_LED/Green"
-        ]
-      },
       "Image_generator_0_DE": {
         "ports": [
           "Image_generator/DE",
           "HDMI_DE"
-        ]
-      },
-      "Image_generator_0_GREEN": {
-        "ports": [
-          "Image_generator/GREEN",
-          "RGB_cropped/GREEN"
         ]
       },
       "Image_generator_0_HSYNC": {
@@ -2005,16 +1595,28 @@
           "HDMI_HSYNC"
         ]
       },
-      "Image_generator_0_RED": {
-        "ports": [
-          "Image_generator/RED",
-          "RGB_cropped/RED"
-        ]
-      },
       "Image_generator_0_VSYNC": {
         "ports": [
           "Image_generator/VSYNC",
           "HDMI_VSYNC"
+        ]
+      },
+      "Image_generator_BLUE": {
+        "ports": [
+          "Image_generator/BLUE",
+          "HDMI_BLUE"
+        ]
+      },
+      "Image_generator_GREEN": {
+        "ports": [
+          "Image_generator/GREEN",
+          "HDMI_GREEN"
+        ]
+      },
+      "Image_generator_RED": {
+        "ports": [
+          "Image_generator/RED",
+          "HDMI_RED"
         ]
       },
       "Pixel_clock_clk_out1": {
@@ -2024,47 +1626,18 @@
           "Image_generator/CLK"
         ]
       },
-      "RGB_HDMI_DATA": {
+      "Pixel_clock_locked": {
         "ports": [
-          "RGB_cropped/HDMI_DATA",
-          "HDMI_DATA"
-        ]
-      },
-      "RGB_LED_LEDS": {
-        "ports": [
-          "RGB_LED/RGB",
-          "LEDS"
-        ]
-      },
-      "Red_1": {
-        "ports": [
-          "Switches/SW0",
-          "RGB_LED/Red"
-        ]
-      },
-      "SW_1": {
-        "ports": [
-          "SW",
-          "Switches/SW"
-        ]
-      },
-      "Switches_SW3": {
-        "ports": [
-          "Switches/SW3",
-          "BP"
-        ]
-      },
-      "axi_iic_0_iic2intc_irpt": {
-        "ports": [
-          "axi_iic_0/iic2intc_irpt",
-          "processing_system7_0/IRQ_F2P"
+          "Pixel_clock/locked",
+          "Image_generator/RESETN"
         ]
       },
       "proc_sys_reset_0_peripheral_aresetn": {
         "ports": [
           "proc_sys_reset_0/peripheral_aresetn",
           "axi_smc/aresetn",
-          "axi_iic_0/s_axi_aresetn"
+          "axi_iic_0/s_axi_aresetn",
+          "Pixel_clock/resetn"
         ]
       },
       "processing_system7_0_FCLK_CLK0": {
@@ -2073,16 +1646,14 @@
           "Pixel_clock/clk_in1",
           "proc_sys_reset_0/slowest_sync_clk",
           "axi_smc/aclk",
-          "processing_system7_0/M_AXI_GP0_ACLK",
-          "axi_iic_0/s_axi_aclk"
+          "axi_iic_0/s_axi_aclk",
+          "processing_system7_0/M_AXI_GP0_ACLK"
         ]
       },
       "processing_system7_0_FCLK_RESET0_N": {
         "ports": [
           "processing_system7_0/FCLK_RESET0_N",
-          "proc_sys_reset_0/ext_reset_in",
-          "Pixel_clock/resetn",
-          "Image_generator/RESETN"
+          "proc_sys_reset_0/ext_reset_in"
         ]
       }
     },
