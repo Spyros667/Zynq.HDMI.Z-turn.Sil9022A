@@ -6,8 +6,6 @@ Starting up HDMI on a Z-turn V2 board
 
 # Table of Contents
 - ## [Introduction](#Introduction)
-- ## [Step 2: Activating Sil9022A (i.e. the HDMI transmitter)](#step-2:-activating-sil9022a-(i.e.-the-hdmi-transmitter))
-- ## [Step 3: Creating a VHDL [VGA] Signal Generator](#Step 3: Creating a VHDL [VGA] Signal Generator)
 
 # Introduction
 
@@ -32,8 +30,7 @@ link to vga signal generation
 
 # Step 3: Creating a VHDL [VGA] Signal Generator
 
-Sil9022A does not care about Hsync/Vsync **polarity**. To be specific, HDMI does not use them.
-> Let's keep Hsync/Vsync **positive** (to reduce Sil9022A configuration).
+HDMI does not care about Hsync/Vsync **polarity**, so let's keep them **positive** (to reduce Sil9022A configuration).
 
 ## Identifying monitor capabilities
 
@@ -109,6 +106,11 @@ Block 0, Base EDID:
 Checksum: 0xf4
 ```
 
+# Referencies
+* [HDMI Made Easy: HDMI-to-VGA and VGA-to-HDMI Converters](https://www.analog.com/en/resources/analog-dialogue/articles/hdmi-made-easy.html)
+* [Z-Turn board HDMI out](https://github.com/hauerdie/z-turn-board-hdmi-out)
+* [various HDMI info](https://www.eaton.com/us/en-us/products/backup-power-ups-surge-it-power-distribution/backup-power-ups-it-power-distribution-resources/cpdi-vertical-marketing/hdmi-explained.html)
+* [Digital Design and Computer Architecture, ARM Edition](https://shop.elsevier.com/books/digital-design-and-computer-architecture-arm-edition/harris/978-0-12-800056-4)
 
 <!-- References/ invisible parts -->
 
