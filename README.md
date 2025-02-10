@@ -39,7 +39,20 @@ This design, features an **AXI I2C interface** (TODO use native) to talk to the 
 
 ## PS - Activating Sil9022A (i.e. the HDMI transmitter)
 
-link to vga signal generation
+(TODO move to native/ PS I2C)
+
+The minimal configuration needed is the following:
+
+1. Raise the `RESETn` signal [to power up Sil9022A]
+* Write `0x00` to register `0xC7`, in order to enable (?) TPI (Transmitter Programming Interface)
+* Wait for ID to stabilize (at 0x1B-1D, 30).
+* Enable (?) source termination
+* Disable TMDS output (at `0x1A`)
+* Switch from D2 to D0 state (at `0x1E`)
+* Enable TMDS output (at `0x1A`)
+
+The RESETn signal will be handled using the *Gpio-PS standalone driver*
+The i2c will be handled using the *AXI-I2C standalone driver*
 
 ## PL - Creating a signal generator
 
@@ -47,154 +60,157 @@ HDMI does not care about Hsync/Vsync **polarity**, so let's keep them **positive
 
 A sample `vhdl` file is provided inside the [code](code) folder, named [Image_generator.vhd](/home/ladon/contmp/Zynq.HDMI.Z-turn.Sil9022A/code/Image_generator.vhd):
 
-```
+```vhdl
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
-use ieee.math_real.all;	-- Needed for the `ceil()` function
+use ieee.math_real.all; -- Needed for the `ceil()` function
 
 -- ===============================================
 --  For synchronisation, pixels are ordered as
 --    Visible, Front, H/V Pulse, Back, [-repeat-]
 -- ===============================================
 entity Image_generator is
-	Generic (
-		-- ===============================
-		--  Horizontal timing (in pixels)
-		-- ===============================
-		H_VISIBLE	: natural := 640;
-		H_FRONT		: natural := 16;
-		H_PULSE		: natural := 64;
-		H_BACK		: natural := 120;
+    Generic (
+        -- ===============================
+        --  Horizontal timing (in pixels)
+        -- ===============================
+        H_VISIBLE   : natural := 640;
+        H_FRONT     : natural := 16;
+        H_PULSE     : natural := 64;
+        H_BACK      : natural := 120;
 
-		-- =============================
-		--  Vertical timing (in pixels)
-		-- =============================
-		V_VISIBLE	: natural := 480;
-		V_FRONT		: natural := 1;
-		V_PULSE		: natural := 3;
-		V_BACK		: natural := 16);
-		
+        -- =============================
+        --  Vertical timing (in pixels)
+        -- =============================
+        V_VISIBLE   : natural := 480;
+        V_FRONT     : natural := 1;
+        V_PULSE     : natural := 3;
+        V_BACK      : natural := 16);
+
     Port (
-		CLK		: in  std_logic;
-		RESETN	: in  std_logic;
+        CLK     : in  std_logic;
+        RESETN  : in  std_logic;
 
-		-- ========
-		--  Colors
-		-- ========
-		RED		: out std_logic_vector(4 downto 0);
-		GREEN	: out std_logic_vector(5 downto 0);
-		BLUE	: out std_logic_vector(4 downto 0);
+        -- ========
+        --  Colors
+        -- ========
+        RED     : out std_logic_vector(4 downto 0);
+        GREEN   : out std_logic_vector(5 downto 0);
+        BLUE    : out std_logic_vector(4 downto 0);
 
-		-- =======================================
-		--  Data Enable (signals visible pixels)
-		--  Unrelated to VGA. Required by HDMI.
-		--  The HDMI transmitter can generate it.
-		-- =======================================
-	    DE		: out std_logic;
+        -- =======================================
+        --  Data Enable (signals visible pixels)
+        --  Unrelated to VGA. Required by HDMI.
+        --  The HDMI transmitter can generate it.
+        -- =======================================
+        DE      : out std_logic;
 
-		-- =======================================================
-		--  Synchronization signals (polarization is unnecessary)
-		-- =======================================================
-		HSYNC	: out std_logic;
-		VSYNC	: out std_logic);
+        -- =======================================================
+        --  Synchronization signals (polarization is unnecessary)
+        -- =======================================================
+        HSYNC   : out std_logic;
+        VSYNC   : out std_logic);
 end Image_generator;
 
 architecture arch of Image_generator is
-	-- ====================================
-	--  Calculate required bits for number
-	-- ====================================
-	function bit_width (num: natural) return natural is
-	begin
-		if num = 0 then
-			return 1;
-		else
-			return integer(ceil(log2(real(num + 1))));
-		end if;
-	end function bit_width;
+    -- ====================================
+    --  Calculate required bits for number
+    -- ====================================
+    function bit_width (num: natural) return natural is
+    begin
+        if num = 0 then
+            return 1;
+        else
+            return integer(ceil(log2(real(num + 1))));
+        end if;
+    end function bit_width;
 
-	-- =========
-	--  Aliases
-	-- =========
-	constant H_TOTAL		: natural := H_VISIBLE + H_FRONT + H_PULSE + H_BACK;
-	constant V_TOTAL		: natural := V_VISIBLE + V_FRONT + V_PULSE + V_BACK;
-	-- ==
-	constant HSYNC_START	: natural := H_VISIBLE + H_FRONT;
-	constant HSYNC_STOP		: natural := H_VISIBLE + H_FRONT + H_PULSE - 1;
-	-- ==
-	constant VSYNC_START	: natural := V_VISIBLE + V_FRONT;
-	constant VSYNC_STOP		: natural := V_VISIBLE + V_FRONT + V_PULSE - 1;
+    -- =========
+    --  Aliases
+    -- =========
+    constant H_TOTAL        : natural := H_VISIBLE + H_FRONT + H_PULSE + H_BACK;
+    constant V_TOTAL        : natural := V_VISIBLE + V_FRONT + V_PULSE + V_BACK;
+    -- ==
+    constant HSYNC_START    : natural := H_VISIBLE + H_FRONT;
+    constant HSYNC_STOP     : natural := H_VISIBLE + H_FRONT + H_PULSE - 1;
+    -- ==
+    constant VSYNC_START    : natural := V_VISIBLE + V_FRONT;
+    constant VSYNC_STOP     : natural := V_VISIBLE + V_FRONT + V_PULSE - 1;
 
-	-- ===========
-	--  Variables
-	-- ===========
-	signal h_pos	: natural range 0 to 2**bit_width(H_TOTAL) - 1;
-	signal v_pos	: natural range 0 to 2**bit_width(V_TOTAL) - 1;
+    -- ===========
+    --  Variables
+    -- ===========
+    signal h_pos    : natural range 0 to 2**bit_width(H_TOTAL) - 1;
+    signal v_pos    : natural range 0 to 2**bit_width(V_TOTAL) - 1;
 begin
-	HSYNC	<= '1' when
-		h_pos >= HSYNC_START and
-		h_pos <= HSYNC_STOP else '0';
-	VSYNC	<= '1' when
-		v_pos >= VSYNC_START and
-		v_pos <= VSYNC_STOP else '0';
+    HSYNC   <= '1' when
+        h_pos >= HSYNC_START and
+        h_pos <= HSYNC_STOP else '0';
+    VSYNC   <= '1' when
+        v_pos >= VSYNC_START and
+        v_pos <= VSYNC_STOP else '0';
 
-	-- ===============================================
-	--  (Pixel ordering: Visible, Front, Pulse, Back)
-	-- ===============================================
-	DE		<= '1' when h_pos < H_VISIBLE and v_pos < V_VISIBLE else '0';
+    -- ===============================================
+    --  (Pixel ordering: Visible, Front, Pulse, Back)
+    -- ===============================================
+    DE      <= '1' when h_pos < H_VISIBLE and v_pos < V_VISIBLE else '0';
 
-	-- ========
-	--  Output
-	-- ========
-	RED		<= std_logic_vector(to_unsigned(16#19#, RED'length));
-	GREEN	<= std_logic_vector(to_unsigned(16#19#, GREEN'length));
-	BLUE	<= std_logic_vector(to_unsigned(16#70#, BLUE'length));
+    -- ========
+    --  Output
+    -- ========
+    RED     <= std_logic_vector(to_unsigned(16#19#, RED'length));
+    GREEN   <= std_logic_vector(to_unsigned(16#19#, GREEN'length));
+    BLUE    <= std_logic_vector(to_unsigned(16#70#, BLUE'length));
 
-	-- ================
-	--  Advance line
-	--  Advance column
-	-- ================
-	process (CLK, RESETN) is
-	begin
-		if rising_edge(CLK) then
-			-- =======
-			--  Reset
-			-- =======
-			if RESETN = '0' then
-				h_pos	<= 0;
-				v_pos	<= 0;
-			else
-				if h_pos >= H_TOTAL - 1 then
-					h_pos	<= 0;
-					-- ===============
-					--  Restart frame
-					-- ===============
-					if v_pos >= V_TOTAL - 1 then
-						v_pos	<= 0;
-					-- ======================
-					--  Advance to next line
-					-- ======================
-					else
-						v_pos	<= v_pos + 1;
-					end if;
-				-- ========================
-				--  Advance to next column
-				-- ========================
-				else
-					h_pos	<= h_pos + 1;
-				end if;
-			end if;
-		end if;
-	end process;
+    -- ================
+    --  Advance line
+    --  Advance column
+    -- ================
+    process (CLK, RESETN) is
+    begin
+        if rising_edge(CLK) then
+            -- =======
+            --  Reset
+            -- =======
+            if RESETN = '0' then
+                h_pos   <= 0;
+                v_pos   <= 0;
+            else
+                if h_pos >= H_TOTAL - 1 then
+                    h_pos   <= 0;
+                    -- ===============
+                    --  Restart frame
+                    -- ===============
+                    if v_pos >= V_TOTAL - 1 then
+                        v_pos   <= 0;
+                    -- ======================
+                    --  Advance to next line
+                    -- ======================
+                    else
+                        v_pos   <= v_pos + 1;
+                    end if;
+                -- ========================
+                --  Advance to next column
+                -- ========================
+                else
+                    h_pos   <= h_pos + 1;
+                end if;
+            end if;
+        end if;
+    end process;
 end arch;
 ```
 
-## Identifying monitor capabilities
+![<H/V sync>](img/HSync.VSync.signals.jpg)
+
+## Monitor capabilities
 
 One way to read the monitor's capabilities, is through its [edid][EDID] file.
-> One way to do it under linux, is via the `/sys` interface using `edid-decode`:  
+> One way to access it under linux, is via the `/sys` interface using `edid-decode`:  
 > `$ edid-decode /sys/devices/pci0000\:00/0000\:00\:02.0/drm/card0/card0-HDMI-A-1/edid`  
-> ^ You can search for the `edid` file like so: `$ find /sys -name edid`
+> ^The proper path can be searched: `$ find /sys -name edid`
+
 
 Example [edid][EDID] files are included in the [edids](doc/edids) folder.
 
@@ -263,11 +279,16 @@ Block 0, Base EDID:
 Checksum: 0xf4
 ```
 
+After identifying a proper mode, say.. **DMT 0x06**, we can ask [tinyvga.com](http://www.tinyvga.com/vga-timing/640x480@75Hz) for the proper timings 😇. (TODO failed with LG Flatron L2000C).
+
+![](img/generics.jpg)
+
 # Referencies
 * [HDMI Made Easy: HDMI-to-VGA and VGA-to-HDMI Converters](https://www.analog.com/en/resources/analog-dialogue/articles/hdmi-made-easy.html)
 * [Z-Turn board HDMI out](https://github.com/hauerdie/z-turn-board-hdmi-out)
 * [various HDMI info](https://www.eaton.com/us/en-us/products/backup-power-ups-surge-it-power-distribution/backup-power-ups-it-power-distribution-resources/cpdi-vertical-marketing/hdmi-explained.html)
 * [Digital Design and Computer Architecture, ARM Edition](https://shop.elsevier.com/books/digital-design-and-computer-architecture-arm-edition/harris/978-0-12-800056-4)
+* [VESA timings](http://www.tinyvga.com/vga-timing)
 
 <!-- References/ invisible parts -->
 
