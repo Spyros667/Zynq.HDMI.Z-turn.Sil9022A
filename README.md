@@ -44,15 +44,35 @@ This design, features an **AXI I2C interface** (TODO use native) to talk to the 
 The minimal configuration needed is the following:
 
 1. Raise the `RESETn` signal [to power up Sil9022A]
-* Write `0x00` to register `0xC7`, in order to enable (?) TPI (Transmitter Programming Interface)
-* Wait for ID to stabilize (at 0x1B-1D, 30).
-* Enable (?) source termination
-* Disable TMDS output (at `0x1A`)
-* Switch from D2 to D0 state (at `0x1E`)
-* Enable TMDS output (at `0x1A`)
+2. Write `0x00` to register `0xC7`, in order to enable (?) TPI (Transmitter Programming Interface)
+3. Wait for ID to stabilize (at 0x1B-1D, 30).
+4. Enable (?) source termination
+5. Disable TMDS output (at `0x1A`)
+6. Switch from D2 to D0 state (at `0x1E`)
+7. Enable TMDS output (at `0x1A`)
 
-The RESETn signal will be handled using the *Gpio-PS standalone driver*
-The i2c will be handled using the *AXI-I2C standalone driver*
+<!-- A comment to break numbering -->
+
+* The RESETn signal will be handled using the ***Gpio-PS standalone driver***
+* The i2c will be handled using the ***AXI-I2C standalone driver***
+
+### GPIO
+
+#### Schematics
+
+There are 2 drivers for GPIO, one for AXI and one for native/ PS.
+
+Searching through the schematics for the RESETn pin, we can see it's connected to `MIO51`. The signal passes first through a buffer and then through an AND gate.
+
+![<RESET 1>](img/RESETn.1.jpg)
+![<RESET 2>](img/RESETn.2.jpg)
+![<RESET 3>](img/RESETn.3.jpg)
+
+#### Code
+
+
+
+### I2C
 
 ## PL - Creating a signal generator
 
