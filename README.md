@@ -11,24 +11,24 @@ Starting up HDMI on a Z-turn V2 board
 
 The [z-turn][z-turn] board, is a [Zynq][Zynq] [PCB][PCB], featuring multiple peripherals:
 
-![<peripherals>](img/z-turn.peripherals.jpg)
+![peripherals](img/z-turn.peripherals.jpg)
 
 Those, are connected either to the [PL][PL] or the [PS][PS] part of a Zynq.
 
 In order to find, where the HDMI is connected to, we can reference the [schematics](doc/zturnv2Schematic.pdf). According to these, they are connected to the [PL][PL] part (since the [PS][PS] pins are numbered [MIO_#][MIO]).
 
-![<hdmi pins>](img/HDMI pins.jpg)
-![<MIO>](img/MIO.jpg)
+![hdmi pins](img/HDMI pins.jpg)
+![MIO](img/MIO.jpg)
 
 Looking further down [the schematics], we see that the signals pass through an "HDMI transmitter".
 
-![<IMG: Sil9022A>](img/Sil9022A.jpg)
+![Sil9022A](img/Sil9022A.jpg)
 
 As a result, we must power up the transmitter
 
 # Design
 
-![<block design>](code/block designs/design_1.svg)
+![block design](code/block designs/design_1.svg)
 
 A relatively easy method, is to let the PS handle the powering up of the transmitter. The PL will handle the visual part.  
 (Another method, would be through `.coe` files, eliminating the need for the PS).
@@ -64,9 +64,9 @@ There are 2 drivers for GPIO, one for AXI and one for native/ PS.
 
 Searching through the schematics for the RESETn pin, we can see it's connected to `MIO51`. The signal passes first through a buffer and then through an AND gate.
 
-![<RESET 1>](img/RESETn.1.jpg)
-![<RESET 2>](img/RESETn.2.jpg)
-![<RESET 3>](img/RESETn.3.jpg)
+![RESET 1](img/RESETn.1.jpg)
+![RESET 2](img/RESETn.2.jpg)
+![RESET 3](img/RESETn.3.jpg)
 
 #### Code
 
@@ -222,7 +222,7 @@ begin
 end arch;
 ```
 
-![<H/V sync>](img/HSync.VSync.signals.jpg)
+![H/V sync](img/HSync.VSync.signals.jpg)
 
 ## Monitor capabilities
 
@@ -301,7 +301,7 @@ Checksum: 0xf4
 
 After identifying a proper mode, say.. **DMT 0x06**, we can ask [tinyvga.com](http://www.tinyvga.com/vga-timing/640x480@75Hz) for the proper timings 😇. (TODO failed with LG Flatron L2000C).
 
-![](img/generics.jpg)
+![generics](img/generics.jpg)
 
 # Referencies
 * [HDMI Made Easy: HDMI-to-VGA and VGA-to-HDMI Converters](https://www.analog.com/en/resources/analog-dialogue/articles/hdmi-made-easy.html)
