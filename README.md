@@ -74,6 +74,10 @@ Searching through the schematics for the RESETn pin, we can see it's connected t
 
 ### I2C
 
+![i2c addresses](img/addresses)
+
+It's important to notee
+
 ## PL - Creating a signal generator
 
 HDMI does not care about Hsync/Vsync **polarity**, so let's keep them **positive** (to reduce Sil9022A configuration).

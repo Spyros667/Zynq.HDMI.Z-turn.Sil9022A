@@ -1,14 +1,11 @@
-#include <stdio.h>
-#include "xil_printf.h"
+#include "xparameters.h"	// Needed for: XPAR_XIIC_0_BASEADDR, XPAR_XGPIOPS_0_BASEADDR
 
-#include "xparameters.h"
-#include "xiic.h"
-#include "xgpiops.h"
-#include "xil_exception.h"
-#include "xinterrupt_wrap.h"
+#include "xiic.h"			// Needed for: Talking to Sil9022A (through AXI)
+#include "xgpiops.h"		// Needed for: Raising RESETn on the Sil9022A
 #include "sleep.h"
 
-#include <cstdint>
+#include <cstdio>			// Needed for: printf()
+#include <cstdint>			// Needed for: uint8_t
 #include <vector>
 
 using namespace std;
@@ -16,7 +13,7 @@ using namespace std;
 constexpr uint8_t  SLAVE_ADDRESS       = 0x3B;
 constexpr uint32_t XGPIOPS_BASEADDR    = XPAR_XGPIOPS_0_BASEADDR;	// (Set according to <parameters.h>)
 constexpr uint32_t XIIC_BASEADDRESS	   = XPAR_XIIC_0_BASEADDR;		// (Set according to <parameters.h>)
-constexpr uint32_t Sil9022A_RESETn_pin = 51;						// ([passing] through buffer)
+constexpr uint32_t Sil9022A_RESETn_pin = 51;						// (MIO51)
 
 class Sil9022A
 {
