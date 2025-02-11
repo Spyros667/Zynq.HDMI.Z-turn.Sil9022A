@@ -52,9 +52,9 @@ Sil9022A::Sil9022A (void)
 
 void Sil9022A::write (const vector<uint8_t>& v) const
 {
-	// ==================================
-	//  (Using blocked?/ polling writes)
-	// ==================================
+	// =================================
+	//  (using blocked I/O and polling)
+	// =================================
 	uint32_t total_sent;
 	total_sent = XIic_Send(XIIC_BASEADDRESS, SLAVE_ADDRESS, const_cast<uint8_t*>(v.data()), v.size(), XIIC_STOP);	// Is const_cast ugly here, or is it just me!?
 
@@ -76,7 +76,7 @@ vector<uint8_t> Sil9022A::read (const vector<uint8_t>& v, const uint32_t& size) 
 	write(v);
 
 	// =================================
-	//  (Using blocked?/ polling reads)
+	//  (using blocked I/O and polling)
 	// =================================
 	vector<uint8_t> result(size);
 	uint32_t total_received;
