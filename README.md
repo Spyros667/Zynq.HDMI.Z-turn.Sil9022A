@@ -272,7 +272,7 @@ One way to read the monitor's capabilities, is through its [edid][EDID] file.
 
 - One way to access it under linux, is via the `/sys` interface using `edid-decode`:
 - `$ edid-decode /sys/devices/pci0000\:00/0000\:00\:02.0/drm/card0/card0-HDMI-A-1/edid`
-- ^The proper path can be searched: `$ find /sys -name edid`
+- ^ The proper path can be searched: `$ find /sys -name edid`
 
 
 Example [edid][EDID] files are included in the [edids](doc/edids) folder.
@@ -342,7 +342,7 @@ Block 0, Base EDID:
 Checksum: 0xf4
 ```
 
-After identifying a proper mode, say.. **DMT 0x06**, we can ask [tinyvga.com](http://www.tinyvga.com/vga-timing/640x480@75Hz) for the proper timings 😇. (TODO failed with LG Flatron L2000C).
+After identifying a proper mode, say.. **DMT 0x06**, we can ask [tinyvga.com](http://www.tinyvga.com/vga-timing/640x480@75Hz) for the proper timings 😇. (TODO failed @ LG Flatron L2000C), and set them as generics:
 
 ![generics](img/generics.jpg)
 
@@ -353,10 +353,10 @@ After identifying a proper mode, say.. **DMT 0x06**, we can ask [tinyvga.com](ht
 * [Digital Design and Computer Architecture, ARM Edition](https://shop.elsevier.com/books/digital-design-and-computer-architecture-arm-edition/harris/978-0-12-800056-4)
 * [VESA timings](http://www.tinyvga.com/vga-timing)
 * [Xilinx (baremetal) libraries](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18841745/Baremetal+Drivers+and+Libraries)
-* [Gpio-PS driver](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18841744/Gpio-PS+standalone+driver)
-* * [API](https://xilinx.github.io/embeddedsw.github.io/gpiops/doc/html/api/index.html)
-* [AXI-I2C driver](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18841916/AXI-I2C+standalone+driver)
-* * [API](https://xilinx.github.io/embeddedsw.github.io/iic/doc/html/api/index.html)
+    * [Gpio-PS driver](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18841744/Gpio-PS+standalone+driver)
+        * [API](https://xilinx.github.io/embeddedsw.github.io/gpiops/doc/html/api/index.html)
+    * [AXI-I2C driver](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18841916/AXI-I2C+standalone+driver)
+        * [API](https://xilinx.github.io/embeddedsw.github.io/iic/doc/html/api/index.html)
 
 <!-- References/ invisible parts -->
 
