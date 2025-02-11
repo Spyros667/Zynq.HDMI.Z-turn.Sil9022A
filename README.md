@@ -346,6 +346,8 @@ After identifying a proper mode, say.. **DMT 0x06**, we can ask [tinyvga.com](ht
 
 ![generics](img/generics.jpg)
 
+**Maximum** resolution can be achieved with the settings under **Detailed Timing Descriptors** [of the edid file].
+
 # Referencies
 * [HDMI Made Easy: HDMI-to-VGA and VGA-to-HDMI Converters](https://www.analog.com/en/resources/analog-dialogue/articles/hdmi-made-easy.html)
 * [Z-Turn board HDMI out](https://github.com/hauerdie/z-turn-board-hdmi-out)
