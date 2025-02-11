@@ -163,9 +163,11 @@ void Sil9022A::wait (void) const
 	usleep(1e3);
 }
 
-// ==============================
-//  Helper functions: vec to hex
-// ==============================
+// ==================
+//  Helper functions
+//  For example:
+//    0A0BFF
+// ==================
 void Sil9022A::print_vec (const vector<uint8_t>& v) const
 {
 	for (const auto& byte: v)
@@ -175,9 +177,11 @@ void Sil9022A::print_vec (const vector<uint8_t>& v) const
 	printf("\r\n");
 }
 
-// ==============================
-//  Helper functions: "reg: vec"
-// ==============================
+// ==================
+//  Helper functions
+//  For example:
+//    A1h: 0A0BFF
+// ==================
 void Sil9022A::print_vec (const uint8_t& reg, const vector<uint8_t>& v) const
 {
 	printf("%02Xh: ", reg);
