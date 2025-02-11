@@ -70,20 +70,21 @@ Searching through the schematics for the **RESETn** pin, we can see it's connect
 
 #### Code
 
-The library being used is called [**Gpio-PS**](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18841744/Gpio-PS+standalone+driver), and this is her [API](https://xilinx.github.io/embeddedsw.github.io/gpiops/doc/html/api/index.html).
+The library being used is called [**Gpio-PS**](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18841744/Gpio-PS+standalone+driver), with this [API](https://xilinx.github.io/embeddedsw.github.io/gpiops/doc/html/api/index.html).
 
 Gpio is first initialized:
 
-* XGpioPs_LookupConfig()
-* XGpioPs_CfgInitialize()
+* XGpioPs_LookupConfig() ▶ Retrieves the addresses assigned to the Gpio-PS controller and the related (parent?) interrupts
+* XGpioPs_CfgInitialize() ▶ Sets the XGpioPs instance's [variables](https://xilinx.github.io/embeddedsw.github.io/gpiops/doc/html/api/struct_x_gpio_ps.html).
 
-And the pins are then set:
+Next the pins are set:
 
-* XGpioPs_SetDirectionPin()
+* XGpioPs_SetDirectionPin() ▶ Which sets the pin as input/output
 * XGpioPs_SetOutputEnablePin()
+
+And written:
+
 * XGpioPs_WritePin()
-
-
 
 ### I2C
 
@@ -94,6 +95,18 @@ It's important to note that the address is **0x3B**. This derives from **0x76 >>
 ![CI2CA](img/CI2CA.jpg)
 
 Needless to say, **CI2CA** has been raised (assuming **R209** is in place).
+
+#### Code
+
+The driver used is called [AXI-I2C](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18841916/AXI-I2C+standalone+driver), with this [API](https://xilinx.github.io/embeddedsw.github.io/iic/doc/html/api/index.html).
+
+Only two functions are used, for simplicity. These are polled/ blocked versions:
+
+* XIic_Recv()
+* XIic_Send()
+
+This is possible, under the assumption that we are "**Master**".  
+(No interrupts are needed).
 
 ## PL - Creating a signal generator
 
@@ -331,7 +344,10 @@ After identifying a proper mode, say.. **DMT 0x06**, we can ask [tinyvga.com](ht
 * [Digital Design and Computer Architecture, ARM Edition](https://shop.elsevier.com/books/digital-design-and-computer-architecture-arm-edition/harris/978-0-12-800056-4)
 * [VESA timings](http://www.tinyvga.com/vga-timing)
 * [Xilinx (baremetal) libraries](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18841745/Baremetal+Drivers+and+Libraries)
-* [Gpio-PS reference/ API](https://xilinx.github.io/embeddedsw.github.io/gpiops/doc/html/api/index.html)
+* [Gpio-PS driver](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18841744/Gpio-PS+standalone+driver)
+* * [API](https://xilinx.github.io/embeddedsw.github.io/gpiops/doc/html/api/index.html)
+* [AXI-I2C driver](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18841916/AXI-I2C+standalone+driver)
+* * [API](https://xilinx.github.io/embeddedsw.github.io/iic/doc/html/api/index.html)
 
 <!-- References/ invisible parts -->
 
