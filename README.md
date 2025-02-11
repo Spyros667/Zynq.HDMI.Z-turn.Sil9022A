@@ -70,6 +70,18 @@ Searching through the schematics for the **RESETn** pin, we can see it's connect
 
 #### Code
 
+The library being used is called [**Gpio-PS**](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18841744/Gpio-PS+standalone+driver), and this is her [API](https://xilinx.github.io/embeddedsw.github.io/gpiops/doc/html/api/index.html).
+
+Gpio is first initialized:
+
+* XGpioPs_LookupConfig()
+* XGpioPs_CfgInitialize()
+
+And the pins are then set:
+
+* XGpioPs_SetDirectionPin()
+* XGpioPs_SetOutputEnablePin()
+* XGpioPs_WritePin()
 
 
 
@@ -318,6 +330,8 @@ After identifying a proper mode, say.. **DMT 0x06**, we can ask [tinyvga.com](ht
 * [various HDMI info](https://www.eaton.com/us/en-us/products/backup-power-ups-surge-it-power-distribution/backup-power-ups-it-power-distribution-resources/cpdi-vertical-marketing/hdmi-explained.html)
 * [Digital Design and Computer Architecture, ARM Edition](https://shop.elsevier.com/books/digital-design-and-computer-architecture-arm-edition/harris/978-0-12-800056-4)
 * [VESA timings](http://www.tinyvga.com/vga-timing)
+* [Xilinx (baremetal) libraries](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18841745/Baremetal+Drivers+and+Libraries)
+* [Gpio-PS reference/ API](https://xilinx.github.io/embeddedsw.github.io/gpiops/doc/html/api/index.html)
 
 <!-- References/ invisible parts -->
 
