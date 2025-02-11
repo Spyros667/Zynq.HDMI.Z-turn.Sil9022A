@@ -3,7 +3,7 @@
 Starting up HDMI on a Z-turn V2 board
 
 1. ### [Introduction](#Introduction-1)
-- ### [Design](#Design-1)
+2. ### [Design](#Design-1)
     - ### [PS - Activating Sil9022A (i.e. the HDMI transmitter)](#ps---activating-sil9022a-ie-the-hdmi-transmitter-1)
         - ### [GPIO](#GPIO-1)
             - ### [Schematics](#Schematics-1)
@@ -12,7 +12,7 @@ Starting up HDMI on a Z-turn V2 board
             - ### [Code](#Code-3)
     - ### [PL - Creating a signal generator](#PL---Creating-a-signal-generator-1)
     - ### [Monitor capabilities](#Monitor-capabilities-1)
-- ### [Referencies](#Referencies-1)
+3. ### [Referencies](#Referencies-1)
 
 # Introduction
 
@@ -22,7 +22,8 @@ The [z-turn][z-turn] board, is a [Zynq][Zynq] [PCB][PCB], featuring multiple per
 
 Those, are connected either to the [PL][PL] or the [PS][PS] part of a Zynq.
 
-In order to find, where the HDMI is connected to, we can reference the [schematics](doc/zturnv2Schematic.pdf). According to these, they are connected to the [PL][PL] part (since the [PS][PS] pins are numbered [MIO_#][MIO]).
+In order to find, where the HDMI is connected to, we can reference the [schematics](doc/zturnv2Schematic.pdf).  
+According to these, they are connected to the [PL][PL] part (since the [PS][PS] pins are numbered as [MIO_#][MIO]).
 
 ![hdmi pins](img/HDMI pins.jpg)
 ![MIO](img/MIO.jpg)
@@ -31,18 +32,26 @@ Looking further down [the schematics], we see that the signals pass through an "
 
 ![Sil9022A](img/Sil9022A.jpg)
 
-As a result, we must power up the transmitter
+As a result, we have to power up the transmitter. In order to do so, we see that it communicates through the I2C-0 bus, thus we'll need an I2C interface to do so.
+
+![I2C-0](img/I2C-0.jpg)
+
+I2C-0 is connected to PL as P15 & P16
+
+![I2C-0.PL](img/I2C-0.PL.jpg)
 
 # Design
 
 ![block design](code/block_designs/minimal_Sil9022A.svg)
 
 A relatively easy method, is to let the PS handle the powering up of the transmitter. The PL will handle the graphics part.  
-(Another method, would be through `.coe` files, eliminating the need for the PS).
+(Another method, would be through `.coe` files (**traffic generator**), eliminating the need for the PS).
 
-This design, features an **AXI I2C interface** (TODO use native) to talk to the common i2c-0 bus (at least three devices use it). A **clocking wizard** is needed in order to provide a different clock for the pixels. Note: Although Sil9022A may handle up to 165MHz, it features a multiplier (and a divider) if the need arises.
+This design, features an **AXI I2C interface** (TODO use native) to talk to the common i2c-0 bus (at least three devices use it, though).
 
-(A constraint file is provided in the [constraint files](code/constraint_files) folder).
+A **clocking wizard** is needed in order to provide a different clock for the pixels. Note: Although Sil9022A may handle up to 165MHz, it features a multiplier (and a divider) if the need arises.
+
+(A constraint file is provided in the [constraint files](code/constraint_files) folder). Naming the external, block design, ports according to the **constraint file** helps with automatic assignment 🙂‍↔️.
 
 ## PS - Activating Sil9022A (i.e. the HDMI transmitter)
 
@@ -51,17 +60,17 @@ This design, features an **AXI I2C interface** (TODO use native) to talk to the 
 The minimal configuration needed is the following:
 
 1. Raise the `RESETn` signal [to power up Sil9022A]
-2. Write `0x00` to register `0xC7`, in order to enable (?) TPI (Transmitter Programming Interface)
+2. Write `0x00` to register `0xC7`, in order to enable the TPI (Transmitter Programming Interface)
 3. Wait for ID to stabilize (at 0x1B-1D, 30).
-4. Enable (?) source termination
-5. Disable TMDS output (at `0x1A`)
+4. Enable source termination (might be unnecessary, depending on the schematic/ external resistors)
+5. Disable TMDS output (at `0x1A`) (default)
 6. Switch from D2 to D0 state (at `0x1E`)
 7. Enable TMDS output (at `0x1A`)
 
 <!-- A comment to break numbering -->
 
-* The RESETn signal will be handled using the ***Gpio-PS standalone driver***
-* The i2c will be handled using the ***AXI-I2C standalone driver***
+* The **RESETn** signal will be handled using the **Gpio-PS** standalone driver
+* The i2c will be handled using the **AXI-I2C** standalone driver
 
 ### GPIO
 
