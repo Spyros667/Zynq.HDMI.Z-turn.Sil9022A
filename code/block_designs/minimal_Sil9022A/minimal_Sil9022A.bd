@@ -4,7 +4,7 @@
       "boundary_crc": "0xBC46F0DD5515D09A",
       "device": "xc7z020clg400-1",
       "name": "minimal_Sil9022A",
-      "pfm_name": "vendor:lib:minimal_Sil9022A:1.0",
+      "pfm_name": "xilinx:mys-7z020:name:0.0",
       "rev_ctrl_bd_flag": "RevCtrlBdOff",
       "synth_flow_mode": "Hierarchical",
       "tool_version": "2024.2.1",

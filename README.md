@@ -30,7 +30,7 @@ As a result, we must power up the transmitter
 
 ![block design](code/block_designs/minimal_Sil9022A.svg)
 
-A relatively easy method, is to let the PS handle the powering up of the transmitter. The PL will handle the visual part.  
+A relatively easy method, is to let the PS handle the powering up of the transmitter. The PL will handle the graphics part.  
 (Another method, would be through `.coe` files, eliminating the need for the PS).
 
 This design, features an **AXI I2C interface** (TODO use native) to talk to the common i2c-0 bus (at least three devices use it). A **clocking wizard** is needed in order to provide a different clock for the pixels. Note: Although Sil9022A may handle up to 165MHz, it features a multiplier (and a divider) if the need arises.
