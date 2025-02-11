@@ -107,13 +107,14 @@ Needless to say, **CI2CA** has been raised (assuming **R209** is in place).
 
 The driver used is called [AXI-I2C](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18841916/AXI-I2C+standalone+driver), with this [API](https://xilinx.github.io/embeddedsw.github.io/iic/doc/html/api/index.html).
 
-Only two functions are used, for simplicity. These are polled/ blocked versions:
+Only two functions are used (for simplicity):
 
 * XIic_Recv()
 * XIic_Send()
 
-This is possible, under the assumption that we are "**Master**".  
-(No interrupts are needed).
+These operate using **polled I/O** and **blocks**.  
+It is important, however, that we are **the only Master** on the bus.  
+In addition, **no interrupts** are needed.
 
 ## PL - Creating a signal generator
 
