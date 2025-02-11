@@ -28,14 +28,14 @@ As a result, we must power up the transmitter
 
 # Design
 
-![block design](code/block%20designs/design_1.svg)
+![block design](code/block_designs/minimal_Sil9022A.svg)
 
 A relatively easy method, is to let the PS handle the powering up of the transmitter. The PL will handle the visual part.  
 (Another method, would be through `.coe` files, eliminating the need for the PS).
 
 This design, features an **AXI I2C interface** (TODO use native) to talk to the common i2c-0 bus (at least three devices use it). A **clocking wizard** is needed in order to provide a different clock for the pixels. Note: Although Sil9022A may handle up to 165MHz, it features a multiplier (and a divider) if the need arises.
 
-(A constraint file is provided in the [constraint files](code/constraint files) folder).
+(A constraint file is provided in the [constraint files](code/constraint_files) folder).
 
 ## PS - Activating Sil9022A (i.e. the HDMI transmitter)
 
