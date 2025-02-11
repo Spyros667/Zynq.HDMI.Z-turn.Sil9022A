@@ -60,9 +60,9 @@ The minimal configuration needed is the following:
 
 #### Schematics
 
-There are 2 drivers for GPIO, one for AXI and one for native/ PS.
+There are 2 drivers for GPIO, one through AXI and one using the native/ PS MIO?.
 
-Searching through the schematics for the RESETn pin, we can see it's connected to `MIO51`. The signal passes first through a buffer and then through an AND gate.
+Searching through the schematics for the **RESETn** pin, we can see it's connected to **MIO51**. The signal passes first through a **buffer** and then through an **AND** gate.
 
 ![RESET 1](img/RESETn.1.jpg)
 ![RESET 2](img/RESETn.2.jpg)
@@ -72,11 +72,16 @@ Searching through the schematics for the RESETn pin, we can see it's connected t
 
 
 
+
 ### I2C
 
-![i2c addresses](img/addresses)
+![i2c addresses](img/addresses.jpg)
 
-It's important to notee
+It's important to note that the address is **0x3B**. This derives from **0x76 >> 1**, which means that the datasheet depicts the **8-bit** versions.
+
+![CI2CA](img/CI2CA.jpg)
+
+Needless to say, **CI2CA** has been raised (assuming **R209** is in place).
 
 ## PL - Creating a signal generator
 
