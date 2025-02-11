@@ -24,17 +24,14 @@ public:
 	// ====================================================
 	//  Perform a burst I2C write at register address v[0]
 	// ====================================================
-	void write (const std::vector<uint8_t>& v);
+	void write (const std::vector<uint8_t>& v) const;
 
-	// =========================================
+	// ===========================================
 	//  Perform a burst I2C read of size "size"
-	//  Vector "v" is written first
-	// =========================================
-	std::vector<uint8_t> read (const std::vector<uint8_t>& v, const uint32_t& size);
-	std::vector<uint8_t> read (const uint8_t& reg_addr, const uint32_t& size)
-	{
-		return read(std::vector<uint8_t>{reg_addr}, size);
-	}
+	//  Vector "v" or "reg_addr" is written first
+	// ===========================================
+	std::vector<uint8_t> read (const std::vector<uint8_t>& v, const uint32_t& size) const;
+	std::vector<uint8_t> read (const uint8_t& reg_addr, const uint32_t& size) const;
 	
 private:
 	// ======================
