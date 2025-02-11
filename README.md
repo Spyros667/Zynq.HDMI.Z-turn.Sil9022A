@@ -1,4 +1,4 @@
-# Zynq.HDMI.Z-turn.Sil9022A 🐉 🪷
+# Zynq.HDMI.Z-turn.Sil9022A 🐉🪷🌌
 
 Starting up HDMI on a Z-turn V2 board
 
