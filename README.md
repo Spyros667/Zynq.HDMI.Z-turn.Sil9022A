@@ -2,10 +2,20 @@
 
 Starting up HDMI on a Z-turn V2 board
 
----
+### [Introduction](#Introduction)
+### [Design](#Design)
 
-# Table of Contents
-- ## [Introduction](#Introduction)
+- ### [Introduction](#Introduction)
+- ### [Design](#Design)
+- - ### [PS - Activating Sil9022A (i.e. the HDMI transmitter)](#PS---Activating-Sil9022A-(i.e.-the-HDMI-transmitter))
+- - - ### [GPIO](#GPIO)
+- - - - ### [Schematics](#Schematics)
+- - - - ### [Code](#Code)
+- - - ### [I2C](#I2C)
+- - - - ### [Code](#Code)
+- - ### [PL - Creating a signal generator](#PL---Creating-a-signal-generator)
+- - ### [Monitor capabilities](#Monitor-capabilities)
+- ### [Referencies](#Referencies)
 
 # Introduction
 
