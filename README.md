@@ -51,7 +51,7 @@ This design, features an **AXI I2C interface** (TODO use native) to talk to the 
 
 A **clocking wizard** is needed in order to provide a different clock for the pixels. Note: Although Sil9022A may handle up to 165MHz, it features a multiplier (and a divider) if the need arises.
 
-(A constraint file is provided in the [constraint files](code/constraint_files) folder). Naming the external, block design, ports according to the **constraint file** helps with automatic assignment 🙂‍↔️.
+(A constraint file is provided in the [constraint files](code/constraint_files) folder). Naming the external, block design, ports according to the **constraint file** helps with automatic assignment 🙃 (TODO 🙂‍↔️).
 
 ## PS - Activating Sil9022A (i.e. the HDMI transmitter)
 
@@ -78,7 +78,7 @@ The minimal configuration needed is the following:
 
 There are 2 drivers for GPIO, one through AXI and one using the native/ PS MIO?.
 
-Searching through the schematics for the **RESETn** pin, we can see it's connected to **MIO51**. The signal passes first through a **buffer** and then through an **AND** gate.
+Searching through the schematics for the **RESETn** pin, we can see it's connected to **MIO51**. (The signal passes first through a **buffer** and then through an **AND** gate).
 
 ![RESET 1](img/RESETn.1.jpg)
 ![RESET 2](img/RESETn.2.jpg)
@@ -86,21 +86,21 @@ Searching through the schematics for the **RESETn** pin, we can see it's connect
 
 #### Code
 
-The library being used is called [**Gpio-PS**](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18841744/Gpio-PS+standalone+driver), with this [API](https://xilinx.github.io/embeddedsw.github.io/gpiops/doc/html/api/index.html).
+The library being used is called [**Gpio-PS**](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18841744/Gpio-PS+standalone+driver). [API](https://xilinx.github.io/embeddedsw.github.io/gpiops/doc/html/api/index.html).
 
-Gpio is first initialized:
+Gpio is first **initialized**:
 
 * XGpioPs_LookupConfig() ▶ Retrieves the addresses assigned to the Gpio-PS controller and the related (parent?) interrupts
 * XGpioPs_CfgInitialize() ▶ Sets the XGpioPs instance's [variables](https://xilinx.github.io/embeddedsw.github.io/gpiops/doc/html/api/struct_x_gpio_ps.html).
 
-Next the pins are set:
+Next the **pins are set**:
 
 * XGpioPs_SetDirectionPin() ▶ Which sets the pin as input/output
 * XGpioPs_SetOutputEnablePin()
 
 And written:
 
-* XGpioPs_WritePin()
+* **XGpioPs_WritePin()**
 
 ### I2C
 
@@ -114,16 +114,16 @@ Needless to say, **CI2CA** has been raised (assuming **R209** is in place).
 
 #### Code
 
-The driver used is called [AXI-I2C](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18841916/AXI-I2C+standalone+driver), with this [API](https://xilinx.github.io/embeddedsw.github.io/iic/doc/html/api/index.html).
+The driver used is called [AXI-I2C](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18841916/AXI-I2C+standalone+driver). [API](https://xilinx.github.io/embeddedsw.github.io/iic/doc/html/api/index.html).
 
-Only two functions are used (for simplicity):
+Only two functions are used (retained for simplicity):
 
 * XIic_Recv()
 * XIic_Send()
 
 These operate using **polled I/O** and **blocks**.  
-It is important, however, that we are **the only Master** on the bus.  
-In addition, **no interrupts** are needed.
+It is important, however, that we are **the only Master** of the bus.  
+(**No interrupts** are needed).
 
 ## PL - Creating a signal generator
 
@@ -275,6 +275,8 @@ end arch;
 
 ![H/V sync](img/HSync.VSync.signals.jpg)
 
+What we need, is **values** for Front/Back porches and H/V sync pulses, for each monitor we are going to **connect to**. (Although remnant from [CRTs][CRT], they are probably needed for modern, digital, displays).
+
 ## Monitor capabilities
 
 One way to read the monitor's capabilities, is through its [edid][EDID] file.
@@ -355,7 +357,7 @@ After identifying a proper mode, say.. **DMT 0x06**, we can ask [tinyvga.com](ht
 
 ![generics](img/generics.jpg)
 
-**Maximum** resolution can be achieved with the settings under **Detailed Timing Descriptors** [of the edid file].
+**Maximum** resolution can be achieved with the settings under **Detailed Timing Descriptors** [in the edid file].
 
 # Referencies
 * [HDMI Made Easy: HDMI-to-VGA and VGA-to-HDMI Converters](https://www.analog.com/en/resources/analog-dialogue/articles/hdmi-made-easy.html)
@@ -378,3 +380,4 @@ After identifying a proper mode, say.. **DMT 0x06**, we can ask [tinyvga.com](ht
 [PS]: ## "Processing System"
 [MIO]: ## "Multiplexed I/O"
 [EDID]: https://en.wikipedia.org/wiki/Extended_Display_Identification_Data
+[CRT]: https://en.wikipedia.org/wiki/Cathode-ray_tube
