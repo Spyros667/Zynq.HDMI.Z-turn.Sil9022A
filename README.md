@@ -2,17 +2,17 @@
 
 Starting up HDMI on a Z-turn V2 board
 
-1. ### [Introduction](#Introduction-1)
-- ### [Design](#Design-1)
-    - ### [PS - Activating Sil9022A (i.e. the HDMI transmitter)](#ps---activating-sil9022a-ie-the-hdmi-transmitter-1)
-        - ### [GPIO](#GPIO-1)
-            - ### [Schematics](#Schematics-1)
-            - ### [Code](#Code-2)
-        - ### [I2C](#I2C-1)
-            - ### [Code](#Code-3)
-    - ### [PL - Creating a signal generator](#PL---Creating-a-signal-generator-1)
-    - ### [Monitor capabilities](#Monitor-capabilities-1)
-- ### [Referencies](#Referencies-1)
+### [Introduction](#Introduction-1)
+### [Design](#Design-1)
+: ### [PS - Activating Sil9022A (i.e. the HDMI transmitter)](#ps---activating-sil9022a-ie-the-hdmi-transmitter-1)
+  : : ### [GPIO](#GPIO-1)
+: : : ### [Schematics](#Schematics-1)
+: : : ### [Code](#Code-2)
+: : ### [I2C](#I2C-1)
+: : : ### [Code](#Code-3)
+: ### [PL - Creating a signal generator](#PL---Creating-a-signal-generator-1)
+: ### [Monitor capabilities](#Monitor-capabilities-1)
+### [Referencies](#Referencies-1)
 
 # Introduction
 
@@ -269,9 +269,9 @@ end arch;
 ## Monitor capabilities
 
 One way to read the monitor's capabilities, is through its [edid][EDID] file.
-> One way to access it under linux, is via the `/sys` interface using `edid-decode`:  
-> `$ edid-decode /sys/devices/pci0000\:00/0000\:00\:02.0/drm/card0/card0-HDMI-A-1/edid`  
-> ^The proper path can be searched: `$ find /sys -name edid`
+: One way to access it under linux, is via the `/sys` interface using `edid-decode`:  
+: `$ edid-decode /sys/devices/pci0000\:00/0000\:00\:02.0/drm/card0/card0-HDMI-A-1/edid`  
+: ^The proper path can be searched: `$ find /sys -name edid`
 
 
 Example [edid][EDID] files are included in the [edids](doc/edids) folder.
